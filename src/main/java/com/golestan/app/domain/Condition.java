@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by nahal on 5/20/2017 AD.
  */
 
-public abstract class Policy {
+public abstract class Condition {
 
     private Date duration;
 

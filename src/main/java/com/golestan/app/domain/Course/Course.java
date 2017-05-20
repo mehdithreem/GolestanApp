@@ -1,6 +1,6 @@
 package com.golestan.app.domain.Course;
 
-import com.golestan.app.domain.Policy;
+import com.golestan.app.domain.Condition;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,5 +22,5 @@ public class Course {
     private Integer lessonUniqueId;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Policy> policies;
+    private List<Condition> policies;
 }

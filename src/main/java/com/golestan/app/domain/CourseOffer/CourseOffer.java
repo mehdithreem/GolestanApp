@@ -1,9 +1,10 @@
 package com.golestan.app.domain.CourseOffer;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.golestan.app.domain.Condition;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by nahal on 5/20/2017 AD.
@@ -19,5 +20,7 @@ public class CourseOffer {
     @Column( name = "DATE")
     private Date date;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Condition> policies;
 
 }
