@@ -22,5 +22,5 @@ public class Course {
     private Integer lessonUniqueId;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Condition> policies;
+    private List<Condition> conditions;
 }

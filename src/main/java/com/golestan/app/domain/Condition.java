@@ -9,11 +9,12 @@ import java.util.Date;
  */
 
 public abstract class Condition {
-
     private Date duration;
+    private String title;
 
-    private String name;
+    Condition(String title) {
+        this.title = title;
+    }
 
-    abstract boolean is_justify(Student student);
-
+    public abstract boolean test(Student student);
 }
