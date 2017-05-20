@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "EducationalTopicsLesson")
+@Table(name = "Educational_Topics_Lesson")
 public class EducationalTopicsLesson {
 
     @Column( name = "NAME")

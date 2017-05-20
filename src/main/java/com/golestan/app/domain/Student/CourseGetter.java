@@ -1,5 +1,7 @@
 package com.golestan.app.domain.Student;
 
+import com.golestan.app.domain.Condition;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,15 +12,31 @@ import java.util.List;
 @Table(name = "CourseGetter")
 public class CourseGetter {
 
-    @Column( name = "STATUS")
+    @Column(name = "STATUS")
     private String status;
 
-    @Column( name = "GPA")
+    @Column(name = "GPA")
     private int gpa;
+
+    @Column(name = "STUDENT_FULL_NAME")
+    private String studentFullName;
+
+    @Column(name = "STUDENT_NUMBER")
+    private String studentNumber;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<License> licenses;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Condition> conditions;
+
+    public List<Condition> getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(List<Condition> conditions) {
+        this.conditions = conditions;
+    }
 
     public String getStatus() {
         return status;
@@ -42,5 +60,21 @@ public class CourseGetter {
 
     public void setLicenses(List<License> licenses) {
         this.licenses = licenses;
+    }
+
+    public String getStudentFullName() {
+        return studentFullName;
+    }
+
+    public void setStudentFullName(String studentFullName) {
+        this.studentFullName = studentFullName;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 }

@@ -1,21 +1,17 @@
 package com.golestan.app.domain.EducationalMajor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by nahal on 5/20/2017 AD.
  */
-@Entity
-@Table(name = "EducationalMajor")
-
+@Embeddable
 public class EducationalMajor {
 
-    @Column( name = "MAJOR")
+    @OneToOne(fetch = FetchType.EAGER)
     private Major major;
 
-    @Column( name = "ORIENTATION")
+    @OneToOne(fetch = FetchType.EAGER)
     private Orientation orientation;
 
     public Major getMajor() {

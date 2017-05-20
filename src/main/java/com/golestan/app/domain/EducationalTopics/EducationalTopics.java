@@ -1,9 +1,8 @@
 package com.golestan.app.domain.EducationalTopics;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.golestan.app.domain.EducationalMajor.EducationalMajor;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -13,10 +12,19 @@ import java.util.List;
 @Table(name = "EducationalTopics")
 public class EducationalTopics {
 
-    //Oriention and major
+    @Embedded
+    private EducationalMajor educationalMajor;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Block> blocks;
+
+    public EducationalMajor getEducationalMajor() {
+        return educationalMajor;
+    }
+
+    public void setEducationalMajor(EducationalMajor educationalMajor) {
+        this.educationalMajor = educationalMajor;
+    }
 
     public List<Block> getBlocks() {
         return blocks;

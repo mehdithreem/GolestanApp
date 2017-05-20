@@ -1,13 +1,30 @@
 package com.golestan.app.domain.Professor;
 
-import com.golestan.app.domain.Term;
+import com.golestan.app.domain.Semester;
+import com.golestan.app.domain.SemesterIdentifier;
 
-import java.util.LinkedHashMap;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Map;
 
 /**
  * Created by nahal on 5/19/2017 AD.
  */
+
+@Entity
+@Table(name = "PROFESSOR")
 public class Professor {
-    Map<Term, CourseManager> term_coursemngr_map = new LinkedHashMap<Term, CourseManager>();
+
+    @ElementCollection
+    private Map<SemesterIdentifier, CourseManager> semesterCourseManagerMap;
+
+    public Map<SemesterIdentifier, CourseManager> getSemesterCourseManagerMap() {
+        return semesterCourseManagerMap;
+    }
+
+    public void setSemesterCourseManagerMap(Map<SemesterIdentifier, CourseManager> semesterCourseManagerMap) {
+        this.semesterCourseManagerMap = semesterCourseManagerMap;
+    }
 }
+

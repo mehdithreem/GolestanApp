@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-@DiscriminatorValue("PISHNIAZI")
+@DiscriminatorValue("HAMNIAZI")
 public class HamniaziCondition extends Condition {
     @Column(name="HAMNIAZ")
     private Course hamniaz;

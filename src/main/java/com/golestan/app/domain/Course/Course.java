@@ -12,15 +12,20 @@ import java.util.List;
 @Table( name="Course")
 public class Course {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private Integer id;
+
     @Column(name="NAME")
     private String name;
 
     @Column(name="COURSE_UNIT")
     private Integer courseUnit;
 
-    @Column(name="LESSON_UNIQUE_ID")
-    private Integer lessonUniqueId;
+    @Column(name="COURSE_UNIQUE_ID")
+    private Integer courseUniqueId;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Condition> conditions;
 }

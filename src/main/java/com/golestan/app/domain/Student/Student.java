@@ -1,11 +1,10 @@
 package com.golestan.app.domain.Student;
 
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
-import com.golestan.app.domain.Term;
+import com.golestan.app.domain.Semester;
+import com.golestan.app.domain.SemesterIdentifier;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -13,35 +12,51 @@ import java.util.Map;
  * Created by nahal on 5/19/2017 AD.
  */
 @Entity
-@Table(name = "Student")
+@Table(name = "STUDENT")
 public class Student {
 
+    @Id
+    @Column( name = "STUDENT_NUMBER")
+    private String studentNumber;
 
-    @Column( name = "EDUCATIONAL MAJOR")
+    @Embedded
     private EducationalMajor educationalMajor;
 
-    @Column( name = "MATCHING FORM")
-    private GraduatedMatchingForm graduatedMatchingForm;
+    @Embedded
+    private GraduatedMatchForm graduatedMatchingForm;
 
+    @ElementCollection
+    private Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap;
 
-    //wat to say
-    Map<Term, CourseGetter> term_coursemngr_map = new LinkedHashMap<Term, CourseGetter>();
-
-
-    public GraduatedMatchingForm getGraduatedMatchingForm() {
+    public GraduatedMatchForm getGraduatedMatchingForm() {
         return graduatedMatchingForm;
     }
-    public void setGraduatedMatchingForm(GraduatedMatchingForm graduatedMatchingForm) {
+
+    public void setGraduatedMatchingForm(GraduatedMatchForm graduatedMatchingForm) {
         this.graduatedMatchingForm = graduatedMatchingForm;
     }
 
-    public Map<Term, CourseGetter> getTerm_coursemngr_map() {
-        return term_coursemngr_map;
+    public EducationalMajor getEducationalMajor() {
+        return educationalMajor;
     }
 
-    public void setTerm_coursemngr_map(Map<Term, CourseGetter> term_coursemngr_map) {
-        this.term_coursemngr_map = term_coursemngr_map;
+    public void setEducationalMajor(EducationalMajor educationalMajor) {
+        this.educationalMajor = educationalMajor;
     }
 
+    public Map<SemesterIdentifier, CourseGetter> getSemesterIdentifierCourseGetterMap() {
+        return semesterIdentifierCourseGetterMap;
+    }
 
+    public void setSemesterIdentifierCourseGetterMap(Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap) {
+        this.semesterIdentifierCourseGetterMap = semesterIdentifierCourseGetterMap;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
 }
