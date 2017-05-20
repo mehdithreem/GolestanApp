@@ -27,7 +27,7 @@ public abstract class Condition {
     @Column( name = "TITLE")
     private String title;
 
-    Condition(String title) {
+    public Condition(String title) {
         this.title = title;
     }
 
