@@ -3,23 +3,18 @@ package com.golestan.app.domain.Course;
 import com.golestan.app.domain.Condition;
 import com.golestan.app.domain.Student.Student;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
  * Created by mehdithreem on 5/20/2017 AD.
  */
-
 @Entity
-@DiscriminatorValue("PISHNIAZI")
-public class PishniaziCondition extends Condition {
-    @Column(name="PISHNIAZ")
-    private Course pishniaz;
+@DiscriminatorValue("MIN_REQUIRED_COURSE_CONDITION")
+public class MinimumRequiredCourseUnitCondition extends Condition{
 
-    public PishniaziCondition(String title, Course pishniaz) {
+    public MinimumRequiredCourseUnitCondition(String title) {
         super(title);
-        this.pishniaz = pishniaz;
     }
 
     public boolean is_justify(Student student) {

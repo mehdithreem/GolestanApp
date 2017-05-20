@@ -13,13 +13,13 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("PISHNIAZI")
-public class PishniaziCondition extends Condition {
-    @Column(name="PISHNIAZ")
-    private Course pishniaz;
+public class HamniaziCondition extends Condition {
+    @Column(name="HAMNIAZ")
+    private Course hamniaz;
 
-    public PishniaziCondition(String title, Course pishniaz) {
+    public HamniaziCondition(String title, Course hamniaz) {
         super(title);
-        this.pishniaz = pishniaz;
+        this.hamniaz = hamniaz;
     }
 
     public boolean is_justify(Student student) {
