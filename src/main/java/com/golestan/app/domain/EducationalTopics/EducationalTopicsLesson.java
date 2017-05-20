@@ -19,10 +19,11 @@ public class EducationalTopicsLesson {
     @Column( name = "NAME")
     private String name;
 
-    @Column( name = "COURSE UNIT")
+    @Column( name = "COURSE_UNIT")
     private int CourseUnit;
 
-    @Column( name = "COURSE TYPE")
+    @Enumerated(EnumType.STRING)
+    @Column( name = "COURSE_TYPE")
     private CourseType courseType;
 
     public String getName() {

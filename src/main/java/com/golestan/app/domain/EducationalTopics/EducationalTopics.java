@@ -9,7 +9,7 @@ import java.util.List;
  * Created by nahal on 5/20/2017 AD.
  */
 @Entity
-@Table(name = "EducationalTopics")
+@Table(name = "EDUCATIONAL_TOPICS")
 public class EducationalTopics {
     @Id
     @GeneratedValue
@@ -19,7 +19,7 @@ public class EducationalTopics {
     @Embedded
     private EducationalMajor educationalMajor;
 
-    @Embedded
+    @OneToMany
     private List<Block> blocks;
 
     public EducationalMajor getEducationalMajor() {

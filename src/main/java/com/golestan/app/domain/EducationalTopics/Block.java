@@ -7,8 +7,13 @@ import java.util.List;
  * Created by nahal on 5/20/2017 AD.
  */
 
-@Embeddable
+@Entity
+@Table(name = "BLOCK")
 public class Block {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Integer id;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<EducationalTopicsLesson> educationalTopicsLessons;
