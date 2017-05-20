@@ -1,5 +1,7 @@
 package com.golestan.app.domain.Person;
 
+import com.golestan.app.domain.Student.Student;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,11 +21,12 @@ public class Individual {
     @Column( name = "LAST_NAME")
     private String lastName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Character> characterList;
+    public String getNationalId() {
+        return nationalId;
+    }
 
-    public Individual() {
-        nationalId = null;
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
     }
 
     public String getFirstName() {
@@ -42,17 +45,9 @@ public class Individual {
         this.lastName = lastName;
     }
 
-    public String getNationalId() { return nationalId; }
-
-    public void setNationalId(String nationalId) {
-        this.nationalId = nationalId;
+    public Individual() {
+        nationalId = null;
     }
 
-    public List<Character> getCharacterList() {
-        return characterList;
-    }
 
-    public void setCharacterList(List<Character> characterList) {
-        this.characterList = characterList;
-    }
 }

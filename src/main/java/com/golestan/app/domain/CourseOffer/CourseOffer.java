@@ -16,6 +16,10 @@ import java.util.List;
 @Entity
 @Table(name = "CourseOffer")
 public class CourseOffer {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Integer id;
 
     @Column( name = "PLACE")
     private String place;
@@ -29,7 +33,7 @@ public class CourseOffer {
     @ManyToOne
     private Professor professor;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Condition> conditions ;
 
     @OneToMany(fetch = FetchType.EAGER)

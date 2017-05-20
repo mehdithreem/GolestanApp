@@ -14,6 +14,10 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type",discriminatorType= DiscriminatorType.STRING)
 abstract public class AttendedCourse {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Integer id;
 
     @Column( name = "STATUS")
     private String status;

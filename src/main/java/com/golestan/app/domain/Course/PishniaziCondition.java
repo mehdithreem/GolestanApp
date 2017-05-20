@@ -6,6 +6,7 @@ import com.golestan.app.domain.Student.Student;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * Created by mehdithreem on 5/20/2017 AD.
@@ -14,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("PISHNIAZI")
 public class PishniaziCondition extends Condition {
-    @Column(name="PISHNIAZ")
+    @OneToOne
     private Course pishniaz;
 
     public PishniaziCondition(String title, Course pishniaz) {

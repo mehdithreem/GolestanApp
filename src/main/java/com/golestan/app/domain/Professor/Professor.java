@@ -1,11 +1,8 @@
 package com.golestan.app.domain.Professor;
 
-import com.golestan.app.domain.Semester;
 import com.golestan.app.domain.SemesterIdentifier;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Map;
 
 /**
@@ -18,6 +15,18 @@ public class Professor {
 
     @ElementCollection
     private Map<SemesterIdentifier, CourseManager> semesterCourseManagerMap;
+
+    @Id
+    @Column( name = "ID_NUMBER")
+    private String professorNumber;
+
+    public String getNumber() {
+        return professorNumber;
+    }
+
+    public void setProfessorNumber(String professorNumber) {
+        this.professorNumber = professorNumber;
+    }
 
     public Map<SemesterIdentifier, CourseManager> getSemesterCourseManagerMap() {
         return semesterCourseManagerMap;

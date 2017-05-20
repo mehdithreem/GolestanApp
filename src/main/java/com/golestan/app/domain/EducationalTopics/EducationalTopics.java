@@ -11,11 +11,15 @@ import java.util.List;
 @Entity
 @Table(name = "EducationalTopics")
 public class EducationalTopics {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Integer id;
 
     @Embedded
     private EducationalMajor educationalMajor;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @Embedded
     private List<Block> blocks;
 
     public EducationalMajor getEducationalMajor() {

@@ -22,24 +22,24 @@ public class App
 
         session.beginTransaction();
 
-        Individual example = new Individual();
-        example.setFirstName("MMahdi");
-        example.setLastName("Mahdizadeh");
-        example.setNationalId("09101200");
-
-        session.save(example);
+//        Individual example = new Individual();
+//        example.setFirstName("MMahdi");
+//        example.setLastName("Mahdizadeh");
+//        example.setNationalId("09101200");
+//
+//        session.save(example);
 
         session.getTransaction().commit();
 
         System.out.println("Indiv comitted");
 
-        Query q = session.createQuery("From Individual ");
-
-        List<Individual> resultList = q.getResultList();
-        System.out.println("num of individuals:" + resultList.size());
-        for (Individual next : resultList) {
-            System.out.println("next individual: " + next);
-        }
+//        Query q = session.createQuery("From Individual ");
+//
+//        List<Individual> resultList = q.getResultList();
+//        System.out.println("num of individuals:" + resultList.size());
+//        for (Individual next : resultList) {
+//            System.out.println("next individual: " + next);
+//        }
 
         HibernateUtil.shutdown();
     }

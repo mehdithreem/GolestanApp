@@ -1,11 +1,9 @@
 package com.golestan.app.domain.Student;
 
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
-import com.golestan.app.domain.Semester;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -13,12 +11,8 @@ import java.util.Map;
  */
 @Entity
 @Table(name = "STUDENT")
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public class Student {
-
-    @Id
-    @Column( name = "STUDENT_NUMBER")
-    private String studentNumber;
-
     @Embedded
     private EducationalMajor educationalMajor;
 
@@ -27,6 +21,18 @@ public class Student {
 
     @ElementCollection
     private Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap;
+
+    @Id
+    @Column( name = "ID_NUMBER")
+    private String studentNumber;
+
+    public String getNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
 
     public GraduatedMatchForm getGraduatedMatchingForm() {
         return graduatedMatchingForm;
@@ -50,13 +56,5 @@ public class Student {
 
     public void setSemesterIdentifierCourseGetterMap(Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap) {
         this.semesterIdentifierCourseGetterMap = semesterIdentifierCourseGetterMap;
-    }
-
-    public String getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
     }
 }

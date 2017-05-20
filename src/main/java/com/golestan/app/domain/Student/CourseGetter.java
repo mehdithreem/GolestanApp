@@ -9,8 +9,12 @@ import java.util.List;
  * Created by nahal on 5/19/2017 AD.
  */
 @Entity
-@Table(name = "CourseGetter")
+@Table(name="COURSE_GETTER")
 public class CourseGetter {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Integer id;
 
     @Column(name = "STATUS")
     private String status;
@@ -27,7 +31,7 @@ public class CourseGetter {
     @OneToMany(fetch = FetchType.EAGER)
     private List<License> licenses;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Condition> conditions;
 
     public List<Condition> getConditions() {
