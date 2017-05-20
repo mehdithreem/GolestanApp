@@ -3,15 +3,13 @@ package com.golestan.app.util;
 /**
  * Created by mehdithreem on 5/19/2017 AD.
  */
-import com.golestan.app.domain.Individual;
+import com.golestan.app.domain.Person.Individual;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class HibernateUtil {
 

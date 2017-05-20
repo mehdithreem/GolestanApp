@@ -1,9 +1,7 @@
-package com.golestan.app.domain;
+package com.golestan.app.domain.Person;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by mehdithreem on 5/19/2017 AD.
@@ -21,10 +19,11 @@ public class Individual {
     @Column( name = "LAST_NAME")
     private String lastName;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Character> characterList;
+
     public Individual() {
         nationalId = null;
-        firstName = null;
-        lastName = null;
     }
 
     public String getFirstName() {
@@ -43,12 +42,17 @@ public class Individual {
         this.lastName = lastName;
     }
 
-    public String getNationalId() {
-
-        return nationalId;
-    }
+    public String getNationalId() { return nationalId; }
 
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
+    }
+
+    public List<Character> getCharacterList() {
+        return characterList;
+    }
+
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
     }
 }

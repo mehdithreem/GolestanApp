@@ -1,11 +1,10 @@
 package com.golestan.app;
 
-import com.golestan.app.domain.Individual;
+import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -24,9 +23,9 @@ public class App
         session.beginTransaction();
 
         Individual example = new Individual();
-        example.setFirstName("MMahdi2");
-        example.setLastName("Mahdizadeh2");
-        example.setNationalId("0910120006");
+        example.setFirstName("MMahdi");
+        example.setLastName("Mahdizadeh");
+        example.setNationalId("09101200");
 
         session.save(example);
 
