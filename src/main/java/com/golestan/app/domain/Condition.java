@@ -31,5 +31,35 @@ public abstract class Condition {
         this.title = title;
     }
 
+    protected Condition() {
+        this.id = null;
+        this.activeSemesters = null;
+        this.title = null;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<SemesterIdentifier> getActiveSemesters() {
+        return activeSemesters;
+    }
+
+    public void setActiveSemesters(List<SemesterIdentifier> activeSemesters) {
+        this.activeSemesters = activeSemesters;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public abstract boolean is_justify(Student student);
 }

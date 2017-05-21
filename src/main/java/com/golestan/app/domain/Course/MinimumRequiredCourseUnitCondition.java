@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("MIN_REQUIRED_COURSE_CONDITION")
 public class MinimumRequiredCourseUnitCondition extends Condition{
+    protected MinimumRequiredCourseUnitCondition() {
+    }
 
     public MinimumRequiredCourseUnitCondition(String title) {
         super(title);

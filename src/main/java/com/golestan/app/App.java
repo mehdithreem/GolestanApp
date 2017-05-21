@@ -1,6 +1,16 @@
 package com.golestan.app;
 
+import com.golestan.app.data.ConditionRepository;
+import com.golestan.app.data.CourseOfferRepository;
+import com.golestan.app.data.CourseRepository;
+import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.Course.Course;
+import com.golestan.app.domain.Course.MinimumRequiredCourseUnitCondition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
+import com.golestan.app.domain.CourseOffer.GenderCondition;
+import com.golestan.app.domain.CourseOffer.UniEntryCondition;
 import com.golestan.app.domain.Person.Individual;
+import com.golestan.app.domain.SemesterIdentifier;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -9,29 +19,41 @@ import java.util.List;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         System.out.println("App started");
-        Session session = HibernateUtil.getSessionFactory().openSession();
 
-        System.out.println("Session Created");
-
-        session.beginTransaction();
-
-//        Individual example = new Individual();
-//        example.setFirstName("MMahdi");
-//        example.setLastName("Mahdizadeh");
-//        example.setNationalId("09101200");
+//        Course riazi = new Course("Riazi 1", 3, 10);
 //
-//        session.save(example);
+//        riazi.addCondtion(new MinimumRequiredCourseUnitCondition("حداقل واحد درس ریاضی ۱"));
+//
+//        CourseRepository.getRepository().create(riazi);
+//
+//        System.out.println(riazi.getId());
 
-        session.getTransaction().commit();
+//        Course riaziRead = CourseRepository.getRepository().read(4);
+//
+//        for (Condition cond : riaziRead.getConditions())
+//            System.out.print(cond.getTitle());
 
-        System.out.println("Indiv comitted");
+//        CourseOffer courseOffer = new CourseOffer("Class4", "10:30AM", new SemesterIdentifier(1396,2), riaziRead);
+//
+//        courseOffer.addCondtiotion(new UniEntryCondition("ورودی ۹۵ای ها"));
+//
+//        CourseOfferRepository.getRepository().create(courseOffer);
+
+        CourseOffer readCourseOffer = CourseOfferRepository.getRepository().readWithCourse(6);
+
+        if (readCourseOffer.getCourse() == null)
+            System.out.println("Course didn't loaded");
+        else
+            System.out.println(readCourseOffer.getCourse().getName());
+
+
+//        CourseOffer riazi = new CourseOffer();
+//
+//        System.out.println("CourseOffer comitted");
 
 //        Query q = session.createQuery("From Individual ");
 //

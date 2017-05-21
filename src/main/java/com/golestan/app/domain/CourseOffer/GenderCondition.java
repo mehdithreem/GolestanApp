@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 
 public class GenderCondition extends Condition{
 
+    protected GenderCondition() {}
+
     public GenderCondition(String title) {
         super(title);
     }

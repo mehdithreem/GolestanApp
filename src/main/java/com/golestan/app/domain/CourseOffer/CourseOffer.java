@@ -3,10 +3,12 @@ package com.golestan.app.domain.CourseOffer;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.Course.Course;
 import com.golestan.app.domain.Professor.Professor;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,14 +32,30 @@ public class CourseOffer {
     @Embedded
     private SemesterIdentifier semesterIdentifier;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Professor professor;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Condition> conditions ;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Course course;
+
+    @OneToMany(fetch = FetchType.LAZY)
     private List<AttendedCourseFromThisUni> attendedCourses;
+
+    protected CourseOffer() {
+    }
+
+    public CourseOffer(String place, String classTime, SemesterIdentifier semesterIdentifier, Course course) {
+        this.place = place;
+        this.classTime = classTime;
+        this.semesterIdentifier = semesterIdentifier;
+        this.professor = null;
+        this.conditions = new ArrayList<Condition>();
+        this.course = course;
+        this.attendedCourses = new ArrayList<AttendedCourseFromThisUni>();
+    }
 
     public SemesterIdentifier getSemesterIdentifier() {
         return semesterIdentifier;
@@ -45,6 +63,14 @@ public class CourseOffer {
 
     public void setSemesterIdentifier(SemesterIdentifier semesterIdentifier) {
         this.semesterIdentifier = semesterIdentifier;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPlace() {
@@ -85,5 +111,21 @@ public class CourseOffer {
 
     public void setAttendedCourses(List<AttendedCourseFromThisUni> attendedCourses) {
         this.attendedCourses = attendedCourses;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public void addCondtiotion(Condition cond) {
+        this.conditions.add(cond);
+    }
+
+    public void addAttendedCourses(AttendedCourseFromThisUni acourse) {
+        this.attendedCourses.add(acourse);
     }
 }
