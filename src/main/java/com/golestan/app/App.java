@@ -43,12 +43,16 @@ public class App {
 //
 //        CourseOfferRepository.getRepository().create(courseOffer);
 
-        CourseOffer readCourseOffer = CourseOfferRepository.getRepository().readWithCourse(6);
+//        CourseOffer readCourseOffer = CourseOfferRepository.getRepository().readWithCourse(6);
+//
+//        if (readCourseOffer.getCourse() == null)
+//            System.out.println("Course didn't loaded");
+//        else
+//            System.out.println(readCourseOffer.getCourse().getName());
 
-        if (readCourseOffer.getCourse() == null)
-            System.out.println("Course didn't loaded");
-        else
-            System.out.println(readCourseOffer.getCourse().getName());
+        List<CourseOffer> readCourseOffers = CourseOfferRepository.getRepository().readBySemester(new SemesterIdentifier(1396,2));
+
+        System.out.println(readCourseOffers.size());
 
 
 //        CourseOffer riazi = new CourseOffer();
