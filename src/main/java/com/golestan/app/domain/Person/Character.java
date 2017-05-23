@@ -9,8 +9,23 @@ import javax.persistence.*;
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 abstract public class Character {
 
+    @Id
+    @GeneratedValue
+    Integer id;
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     Individual individual;
+
+    protected Character(){}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Individual getIndividual() {
         return individual;

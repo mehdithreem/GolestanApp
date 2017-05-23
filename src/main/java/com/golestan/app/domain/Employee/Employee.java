@@ -1,25 +1,27 @@
 package com.golestan.app.domain.Employee;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.golestan.app.domain.Person.Character;
+
+import javax.persistence.*;
 
 /**
  * Created by nahal on 5/19/2017 AD.
  */
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class Employee extends Character{
     @Id
-    @Column( name = "ID_NUMBER")
-    private String employeeNumber;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
 
-    public String getNumber() {
-        return employeeNumber;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setEmployeeNumber(String employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
+
 }

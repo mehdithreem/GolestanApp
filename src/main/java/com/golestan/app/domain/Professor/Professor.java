@@ -1,5 +1,6 @@
 package com.golestan.app.domain.Professor;
 
+import com.golestan.app.domain.Person.Character;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
@@ -11,21 +12,23 @@ import java.util.Map;
 
 @Entity
 @Table(name = "PROFESSOR")
-public class Professor {
+public class Professor extends Character{
 
     @ElementCollection
     private Map<SemesterIdentifier, CourseManager> semesterCourseManagerMap;
 
     @Id
-    @Column( name = "ID_NUMBER")
-    private String professorNumber;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
 
-    public String getNumber() {
-        return professorNumber;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setProfessorNumber(String professorNumber) {
-        this.professorNumber = professorNumber;
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Map<SemesterIdentifier, CourseManager> getSemesterCourseManagerMap() {

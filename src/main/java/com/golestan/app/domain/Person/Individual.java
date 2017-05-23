@@ -3,6 +3,7 @@ package com.golestan.app.domain.Person;
 import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -25,6 +26,15 @@ public class Individual {
         return nationalId;
     }
 
+    public Individual(String nationalId, String firstName, String lastName){
+        this.nationalId = nationalId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    protected Individual(){
+    }
+
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
@@ -43,10 +53,6 @@ public class Individual {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Individual() {
-        nationalId = null;
     }
 
 

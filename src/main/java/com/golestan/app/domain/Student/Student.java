@@ -1,6 +1,8 @@
 package com.golestan.app.domain.Student;
 
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
+import com.golestan.app.domain.Person.Character;
+import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
@@ -13,7 +15,11 @@ import java.util.Map;
 @Entity
 @Table(name = "STUDENT")
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-public class Student {
+public class Student extends Character {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
+
     @Embedded
     private EducationalMajor educationalMajor;
 
@@ -23,15 +29,15 @@ public class Student {
     @ElementCollection
     private Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap;
 
-    @Id
-    @Column( name = "ID_NUMBER")
+    @Column( name = "ID_NUMBER" , unique = true)
     private String studentNumber;
 
-    public Student(String studentNumber, EducationalMajor educationalMajor) {
+    public Student(Individual ind, String studentNumber, EducationalMajor educationalMajor) {
         this.educationalMajor = educationalMajor;
         this.graduatedMatchingForm = null;
         this.studentNumber = studentNumber;
         this.semesterIdentifierCourseGetterMap = new HashMap<SemesterIdentifier, SemesterStatus>();
+        this.setIndividual(ind);
     }
 
     protected Student() {

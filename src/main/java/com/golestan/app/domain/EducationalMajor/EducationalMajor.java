@@ -14,8 +14,6 @@ public class EducationalMajor {
     @OneToOne(fetch = FetchType.EAGER)
     private Orientation orientation;
 
-    EducationalMajor(Major)
-
     public Major getMajor() {
         return major;
     }

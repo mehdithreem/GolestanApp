@@ -1,9 +1,6 @@
 package com.golestan.app;
 
-import com.golestan.app.data.AttendedCourseRepository;
-import com.golestan.app.data.ConditionRepository;
-import com.golestan.app.data.CourseOfferRepository;
-import com.golestan.app.data.CourseRepository;
+import com.golestan.app.data.*;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromOtherUni;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
@@ -69,10 +66,17 @@ public class App {
 //        AttendedCourse attCourse2 = new AttendedCourseFromOtherUni("Ali", "214", "Riazi1", 3, CourseType.Theory);
 //
 //        AttendedCourseRepository.getRepository().create(attCourse2);
+        Individual ind = new Individual("123456", "nahal", "mir");
 
-        Student student = new Student("12341", null);
+        IndividualRepository.getRepository().create(ind);
 
-        SemesterStatus semesterStatus = SemesterStatus();
+        Student student = new Student(ind,"12341", null);
+
+        SemesterStatus semesterStatus = new SemesterStatus(ind.getFirstName(), student.getStudentNumber(), new SemesterIdentifier(96, 1));
+
+        student.addSemesterStatus(semesterStatus);
+
+        StudentRepository.getRepository().create(student);
 
 
 //        CourseOffer riazi = new CourseOffer();
