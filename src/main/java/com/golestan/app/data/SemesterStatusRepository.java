@@ -23,9 +23,6 @@ public class SemesterStatusRepository {
         for (License license : semstat.getLicenses())
             LicenseRepository.getRepository().create(license);
 
-        for (AttendedCourse attendedCourse : semstat.getAttendedCourses())
-            AttendedCourseRepository.getRepository().create(attendedCourse);
-
         session.save(semstat);
         tx.commit();
         session.close();

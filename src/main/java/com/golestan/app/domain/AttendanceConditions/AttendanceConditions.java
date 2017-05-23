@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class AttendanceConditions {
     private static AttendanceConditions singleton = new AttendanceConditions();
-    public static AttendanceConditions getRepository() {
+    public static AttendanceConditions getInstance() {
         return singleton;
     }
 
