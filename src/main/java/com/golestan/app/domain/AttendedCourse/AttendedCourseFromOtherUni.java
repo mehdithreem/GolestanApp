@@ -22,6 +22,17 @@ public class AttendedCourseFromOtherUni extends AttendedCourse{
     @Column(name = "COURSE_TYPE")
     private CourseType courseType;
 
+    public AttendedCourseFromOtherUni(String studentFullName, String studentNumber, String courseName, Integer courseUnit, CourseType courseType) {
+        super(studentFullName, studentNumber);
+        this.courseName = courseName;
+        this.courseUnit = courseUnit;
+        this.courseType = courseType;
+    }
+
+    protected AttendedCourseFromOtherUni() {
+        super();
+    }
+
     public String getCourseName() {
         return courseName;
     }

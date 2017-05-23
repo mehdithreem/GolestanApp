@@ -31,6 +31,16 @@ abstract public class AttendedCourse {
     @Column( name = "STUDENT_NUMBER")
     private String studentNumber;
 
+    protected AttendedCourse(String studentFullName, String studentNumber) {
+        this.status = "اخذ شده";
+        this.mark = 0;
+        this.studentFullName = studentFullName;
+        this.studentNumber = studentNumber;
+    }
+
+    protected AttendedCourse() {
+    }
+
     public String getStudentFullName() {
         return studentFullName;
     }

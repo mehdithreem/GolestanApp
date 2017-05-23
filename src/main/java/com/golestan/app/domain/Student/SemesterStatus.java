@@ -104,11 +104,11 @@ public class SemesterStatus {
         this.studentNumber = studentNumber;
     }
 
-    public addAttendedCourse(AttendedCourse attendedCourse) {
+    public void addAttendedCourse(AttendedCourse attendedCourse) {
         this.attendedCourses.add(attendedCourse);
     }
 
-    public addLicense(License license) {
+    public void addLicense(License license) {
         this.licenses.add(license);
     }
 }

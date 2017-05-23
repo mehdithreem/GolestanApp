@@ -15,6 +15,15 @@ public class AttendedCourseFromThisUni extends AttendedCourse {
     @ManyToOne(fetch = FetchType.EAGER)
     private CourseOffer courseOffer;
 
+    public AttendedCourseFromThisUni(String studentFullName, String studentNumber, CourseOffer courseOffer) {
+        super(studentFullName, studentNumber);
+        this.courseOffer = courseOffer;
+    }
+
+    protected AttendedCourseFromThisUni() {
+        super();
+    }
+
     public CourseOffer getCourseOffer() {
         return courseOffer;
     }
