@@ -6,6 +6,7 @@ import com.golestan.app.domain.Condition;
 import com.golestan.app.domain.Course.Course;
 import com.golestan.app.domain.Professor.Professor;
 import com.golestan.app.domain.SemesterIdentifier;
+import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -127,5 +128,13 @@ public class CourseOffer {
 
     public void addAttendedCourses(AttendedCourseFromThisUni acourse) {
         this.attendedCourses.add(acourse);
+    }
+
+    public boolean isMojaz(Student student, CourseOffer courseOffer){
+        for(Condition condition: conditions ) {
+            if (!condition.is_justify(student, this))
+                return false;
+        }
+        return this.course.isMojaz(student, this);
     }
 }

@@ -1,6 +1,8 @@
 package com.golestan.app.domain.Course;
 
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
+import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -87,5 +89,12 @@ public class Course {
 
     public void addCondtion(Condition condition) {
         this.conditions.add(condition);
+    }
+
+    public boolean isMojaz(Student student, CourseOffer courseOffer){
+        for(Condition condition: conditions )
+            if(!condition.is_justify(student, courseOffer))
+                return false;
+        return true;
     }
 }

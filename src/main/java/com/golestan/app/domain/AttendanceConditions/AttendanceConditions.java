@@ -27,6 +27,11 @@ public class AttendanceConditions {
     }
 
     public boolean isMojaz(Student student, CourseOffer courseOffer) {
-        return true;
+        for( Condition condition: this.conditions) {
+            if (!condition.is_justify(student, courseOffer))
+                return false;
+        }
+
+        return courseOffer.isMojaz(student, courseOffer);
     }
 }
