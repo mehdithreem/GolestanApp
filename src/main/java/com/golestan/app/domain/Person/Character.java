@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 abstract public class Character {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Individual individual;
 
     public Individual getIndividual() {

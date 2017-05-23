@@ -13,9 +13,11 @@ import com.golestan.app.domain.Course.MinimumRequiredCourseUnitCondition;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.CourseOffer.GenderCondition;
 import com.golestan.app.domain.CourseOffer.UniEntryCondition;
+import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.EducationalTopics.CourseType;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
+import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.domain.Student.Student;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
@@ -68,7 +70,9 @@ public class App {
 //
 //        AttendedCourseRepository.getRepository().create(attCourse2);
 
-//        Student student = new Student();
+        Student student = new Student("12341", null);
+
+        SemesterStatus semesterStatus = SemesterStatus();
 
 
 //        CourseOffer riazi = new CourseOffer();

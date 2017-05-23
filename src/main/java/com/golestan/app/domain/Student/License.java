@@ -17,8 +17,11 @@ public class License {
     @Column(name = "title")
     private String title;
 
-    public License() {
+    public License(String title) {
+        this.title = title;
     }
+
+    protected License() {}
 
     public Integer getId() {
         return id;
