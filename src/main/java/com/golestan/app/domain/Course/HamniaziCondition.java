@@ -1,6 +1,7 @@
 package com.golestan.app.domain.Course;
 
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class HamniaziCondition extends Condition {
         this.hamniaz = hamniaz;
     }
 
-    public boolean is_justify(Student student) {
+    public boolean is_justify(Student student, CourseOffer courseOffer) {
         return false;
     }
 }

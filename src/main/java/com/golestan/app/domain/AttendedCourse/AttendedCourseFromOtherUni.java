@@ -24,8 +24,8 @@ public class AttendedCourseFromOtherUni extends AttendedCourse{
 
     public AttendedCourseFromOtherUni(String studentFullName, String studentNumber, String courseName, Integer courseUnit, CourseType courseType) {
         super(studentFullName, studentNumber);
-        this.courseName = courseName;
         this.courseUnit = courseUnit;
+        this.courseName = courseName;
         this.courseType = courseType;
     }
 

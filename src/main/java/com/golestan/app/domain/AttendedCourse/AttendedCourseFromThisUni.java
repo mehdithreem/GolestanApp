@@ -12,11 +12,15 @@ import javax.persistence.*;
 @DiscriminatorValue("FROM_THIS_UNI")
 public class AttendedCourseFromThisUni extends AttendedCourse {
 
+    @Column(name = "COURSE_UNIT")
+    private Integer courseUnit;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private CourseOffer courseOffer;
 
-    public AttendedCourseFromThisUni(String studentFullName, String studentNumber, CourseOffer courseOffer) {
-        super(studentFullName, studentNumber);
+    public AttendedCourseFromThisUni(Integer courseUnit, String studentFullName, String studentNumber, CourseOffer courseOffer) {
+        super( studentFullName, studentNumber);
+        this.courseUnit = courseUnit;
         this.courseOffer = courseOffer;
     }
 

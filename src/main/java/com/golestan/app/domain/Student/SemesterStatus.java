@@ -53,6 +53,7 @@ public class SemesterStatus {
     protected SemesterStatus() {
     }
 
+
     public Integer getId() {
         return id;
     }

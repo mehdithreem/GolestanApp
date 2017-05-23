@@ -1,12 +1,18 @@
 package com.golestan.app.domain.Course;
 
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
+import com.golestan.app.domain.Semester;
+import com.golestan.app.domain.SemesterIdentifier;
+import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 /**
  * Created by mehdithreem on 5/20/2017 AD.
@@ -15,6 +21,7 @@ import javax.persistence.OneToOne;
 @Entity
 @DiscriminatorValue("PISHNIAZI")
 public class PishniaziCondition extends Condition {
+
     @OneToOne
     private Course pishniaz;
 
@@ -23,7 +30,14 @@ public class PishniaziCondition extends Condition {
         this.pishniaz = pishniaz;
     }
 
-    public boolean is_justify(Student student) {
+    public boolean is_justify(Student student, CourseOffer courseOffer) {
+        for( SemesterStatus semesterStatus:  student.getSemesterIdentifierCourseGetterMap().values()) {
+            List <AttendedCourse> attendedCourses = semesterStatus.getAttendedCourses();
+            for( AttendedCourse attendedCourse : attendedCourses){
+                if(attendedCourse.getId() == pishniaz.getId())
+                    return true;
+            }
+        }
         return false;
     }
 }

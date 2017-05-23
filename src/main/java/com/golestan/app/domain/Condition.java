@@ -1,5 +1,6 @@
 package com.golestan.app.domain;
 
+import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.*;
@@ -61,5 +62,5 @@ public abstract class Condition {
         this.title = title;
     }
 
-    public abstract boolean is_justify(Student student);
+    public abstract boolean is_justify(Student student, CourseOffer courseOffer);
 }

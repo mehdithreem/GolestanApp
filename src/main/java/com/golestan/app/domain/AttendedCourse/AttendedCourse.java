@@ -41,6 +41,14 @@ abstract public class AttendedCourse {
     protected AttendedCourse() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getStudentFullName() {
         return studentFullName;
     }
