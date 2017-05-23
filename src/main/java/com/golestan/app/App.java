@@ -16,6 +16,7 @@ import com.golestan.app.domain.CourseOffer.UniEntryCondition;
 import com.golestan.app.domain.EducationalTopics.CourseType;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
+import com.golestan.app.domain.Student.Student;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -66,6 +67,8 @@ public class App {
 //        AttendedCourse attCourse2 = new AttendedCourseFromOtherUni("Ali", "214", "Riazi1", 3, CourseType.Theory);
 //
 //        AttendedCourseRepository.getRepository().create(attCourse2);
+
+//        Student student = new Student();
 
 
 //        CourseOffer riazi = new CourseOffer();

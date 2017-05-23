@@ -2,6 +2,7 @@ package com.golestan.app.domain.Student;
 
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,11 +12,11 @@ import java.util.List;
  * Created by nahal on 5/19/2017 AD.
  */
 @Entity
-@Table(name="SEMESTER_STATUS")
+@Table(name = "SEMESTER_STATUS")
 public class SemesterStatus {
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "STATUS")
@@ -30,19 +31,23 @@ public class SemesterStatus {
     @Column(name = "STUDENT_NUMBER")
     private String studentNumber;
 
+    @Embedded
+    private SemesterIdentifier semesterIdentifier;
+
     @OneToMany(fetch = FetchType.EAGER)
     private List<License> licenses;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<AttendedCourse> attendedCourses;
 
-    public SemesterStatus(String fullName, String studentNumber) {
+    public SemesterStatus(String fullName, String studentNumber, SemesterIdentifier semesterIdentifier) {
         this.studentFullName = fullName;
         this.studentNumber = studentNumber;
         this.status = "در حال اخذ";
         this.gpa = 0;
         this.licenses = new ArrayList<License>();
         this.attendedCourses = new ArrayList<AttendedCourse>();
+        this.semesterIdentifier = semesterIdentifier;
     }
 
     protected SemesterStatus() {
@@ -110,5 +115,14 @@ public class SemesterStatus {
 
     public void addLicense(License license) {
         this.licenses.add(license);
+    }
+
+
+    public SemesterIdentifier getSemesterIdentifier() {
+        return semesterIdentifier;
+    }
+
+    public void setSemesterIdentifier(SemesterIdentifier semesterIdentifier) {
+        this.semesterIdentifier = semesterIdentifier;
     }
 }

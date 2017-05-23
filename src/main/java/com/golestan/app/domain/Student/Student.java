@@ -4,6 +4,7 @@ import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,6 +26,20 @@ public class Student {
     @Id
     @Column( name = "ID_NUMBER")
     private String studentNumber;
+
+    public Student(String studentNumber, EducationalMajor educationalMajor) {
+        this.educationalMajor = educationalMajor;
+        this.graduatedMatchingForm = null;
+        this.studentNumber = studentNumber;
+        this.semesterIdentifierCourseGetterMap = new HashMap<SemesterIdentifier, SemesterStatus>();
+    }
+
+    protected Student() {
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
 
     public String getNumber() {
         return studentNumber;
@@ -56,5 +71,9 @@ public class Student {
 
     public void setSemesterIdentifierCourseGetterMap(Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap) {
         this.semesterIdentifierCourseGetterMap = semesterIdentifierCourseGetterMap;
+    }
+
+    public void addSemesterStatus(SemesterStatus semstat) {
+        this.semesterIdentifierCourseGetterMap.put(semstat.getSemesterIdentifier(), semstat);
     }
 }
