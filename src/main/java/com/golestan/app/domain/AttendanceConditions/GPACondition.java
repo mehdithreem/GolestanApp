@@ -1,6 +1,7 @@
 package com.golestan.app.domain.AttendanceConditions;
 
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.Student.Student;
 
 import javax.persistence.DiscriminatorValue;
@@ -19,7 +20,7 @@ public class GPACondition extends Condition{
         super(title);
     }
 
-    public boolean is_justify(Student student) {
-        return false;
+    public boolean is_justify(Student student, CourseOffer courseOffer) {
+        return true;
     }
 }

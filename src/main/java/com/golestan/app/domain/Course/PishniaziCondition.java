@@ -30,14 +30,17 @@ public class PishniaziCondition extends Condition {
         this.pishniaz = pishniaz;
     }
 
+    protected PishniaziCondition() {}
+
     public boolean is_justify(Student student, CourseOffer courseOffer) {
         for( SemesterStatus semesterStatus:  student.getSemesterIdentifierCourseGetterMap().values()) {
             List <AttendedCourse> attendedCourses = semesterStatus.getAttendedCourses();
             for( AttendedCourse attendedCourse : attendedCourses){
-                if(attendedCourse.getId() == pishniaz.getId())
+                if(attendedCourse.getCourseUniqueId().equals(pishniaz.getCourseUniqueId()))
                     return true;
             }
         }
+        System.out.println("Pishniazi " + this.pishniaz.getName() + " failed");
         return false;
     }
 }

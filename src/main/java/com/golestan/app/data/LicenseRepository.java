@@ -22,7 +22,7 @@ public class LicenseRepository {
     public void create(License license) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(license);
+        session.saveOrUpdate(license);
 
         tx.commit();
         session.close();

@@ -1,6 +1,7 @@
 package com.golestan.app.data;
 
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
+import com.golestan.app.domain.Semester;
 import com.golestan.app.domain.Student.License;
 import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.util.HibernateUtil;
@@ -24,6 +25,16 @@ public class SemesterStatusRepository {
             LicenseRepository.getRepository().create(license);
 
         session.save(semstat);
+        tx.commit();
+        session.close();
+    }
+
+    public void updateAttendedCourses(SemesterStatus semesterStatus){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        session.update(semesterStatus);
+
         tx.commit();
         session.close();
     }

@@ -27,7 +27,9 @@ public class NtekhabVahed {
     public boolean getCourseOffer(Student student, CourseOffer courseOffer) {
         boolean result = AttendanceConditions.getInstance().isMojaz(student, courseOffer);
         if (result) {
-            student.registerCourseOffer();
+            student.registerCourseOffer(courseOffer, currentSemester);
         }
+
+        return result;
     }
 }

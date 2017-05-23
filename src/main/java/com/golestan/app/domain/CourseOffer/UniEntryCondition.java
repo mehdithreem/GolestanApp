@@ -17,10 +17,9 @@ public class UniEntryCondition extends Condition{
         super(title);
     }
 
-    protected UniEntryCondition() {
-    }
+    protected UniEntryCondition() {}
 
-    public boolean is_justify(Student student) {
-        return false;
+    public boolean is_justify(Student student, CourseOffer courseOffer) {
+        return true;
     }
 }

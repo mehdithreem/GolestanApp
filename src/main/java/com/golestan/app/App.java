@@ -19,14 +19,11 @@ import com.golestan.app.domain.SemesterIdentifier;
 import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.domain.Student.Student;
 import com.golestan.app.util.HibernateUtil;
-import org.hibernate.Session;
 
-import javax.persistence.Query;
 import java.util.List;
+import java.util.Scanner;
 
-/**
- * Hello world!
- */
+
 public class App {
     public static void initialize() {
         Course riazi1 = new Course("Riazi 1", 3, 10);
@@ -76,48 +73,29 @@ public class App {
 
         initialize();
 
+        Student student = StudentRepository.getRepository().readByStudentNumber("810192558");
+
+        System.out.println("Hello " + student.getIndividual().getFirstName());
+
         List<CourseOffer> courseOffers = NtekhabVahed.getInstance().getCurrentSemesterCourseOffers();
 
-        // print offers
+        for(CourseOffer courseOffer: courseOffers)
+            System.out.println(courseOffer.getId().toString() + " : " + courseOffer.getCourse().getName());
 
+        Scanner scan = new Scanner(System.in);
+        int targetId = scan.nextInt();
 
+        CourseOffer target = null;
+        for(CourseOffer courseOffer: courseOffers)
+            if (courseOffer.getId() == targetId) {
+                target = courseOffer;
+                break;
+            }
 
-//        AttendedCourse attCourse = new AttendedCourseFromThisUni("Ali", "132", courseOffer);
-//
-//        AttendedCourseRepository.getRepository().create(attCourse);
-//
-//        AttendedCourse attCourse2 = new AttendedCourseFromOtherUni("Ali", "214", "Riazi1", 3, CourseType.Theory);
-//
-//        AttendedCourseRepository.getRepository().create(attCourse2);
-//        Individual ind = new Individual("123456", "nahal", "mir");
-//
-//        IndividualRepository.getRepository().create(ind);
-//
-//        Student student = new Student(ind,"12341", null);
-//
-//        SemesterStatus semesterStatus = new SemesterStatus(ind.getFirstName(), student.getStudentNumber(), new SemesterIdentifier(96, 1));
-//
-//        student.addSemesterStatus(semesterStatus);
-//
-//        StudentRepository.getRepository().create(student);
-
-        Student student = StudentRepository.getRepository().readByStudentNumber("12341");
-
-        for(SemesterStatus semesterStatus: student.getSemesterIdentifierCourseGetterMap().values())
-            System.out.println(semesterStatus.getStatus());
-
-
-//        CourseOffer riazi = new CourseOffer();
-//
-//        System.out.println("CourseOffer comitted");
-
-//        Query q = session.createQuery("From Individual ");
-//
-//        List<Individual> resultList = q.getResultList();
-//        System.out.println("num of individuals:" + resultList.size());
-//        for (Individual next : resultList) {
-//            System.out.println("next individual: " + next);
-//        }
+        if (NtekhabVahed.getInstance().getCourseOffer(student, target))
+            System.out.println("Successful");
+        else
+            System.out.println("You cannot attend this course.");
 
         HibernateUtil.shutdown();
     }

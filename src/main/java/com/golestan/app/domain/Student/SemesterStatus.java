@@ -1,7 +1,10 @@
 package com.golestan.app.domain.Student;
 
+import com.golestan.app.data.AttendedCourseRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
+import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
 import com.golestan.app.domain.Condition;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
@@ -125,5 +128,12 @@ public class SemesterStatus {
 
     public void setSemesterIdentifier(SemesterIdentifier semesterIdentifier) {
         this.semesterIdentifier = semesterIdentifier;
+    }
+
+    public void register(CourseOffer courseOffer) {
+        AttendedCourseFromThisUni attended = new AttendedCourseFromThisUni(studentFullName, studentNumber, courseOffer);
+        AttendedCourseRepository.getRepository().create(attended);
+
+        this.attendedCourses.add(attended);
     }
 }

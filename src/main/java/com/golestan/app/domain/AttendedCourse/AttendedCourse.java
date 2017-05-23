@@ -80,4 +80,6 @@ abstract public class AttendedCourse {
     public void setMark(float mark) {
         this.mark = mark;
     }
+
+    public abstract Integer getCourseUniqueId();
 }

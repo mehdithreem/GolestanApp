@@ -1,5 +1,7 @@
 package com.golestan.app.domain.Student;
 
+import com.golestan.app.data.SemesterStatusRepository;
+import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.Person.Character;
 import com.golestan.app.domain.Person.Individual;
@@ -81,5 +83,13 @@ public class Student extends Character {
 
     public void addSemesterStatus(SemesterStatus semstat) {
         this.semesterIdentifierCourseGetterMap.put(semstat.getSemesterIdentifier(), semstat);
+    }
+
+    public void registerCourseOffer(CourseOffer courseOffer, SemesterIdentifier semesterIdentifier) {
+        SemesterStatus semesterStatus = (this.getSemesterIdentifierCourseGetterMap()).get(semesterIdentifier);
+
+        semesterStatus.register(courseOffer);
+
+        SemesterStatusRepository.getRepository().updateAttendedCourses(semesterStatus);
     }
 }

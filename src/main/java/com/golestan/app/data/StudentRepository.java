@@ -51,8 +51,14 @@ public class StudentRepository {
 
         Student student = query.getSingleResult();
 
+        student.getSemesterIdentifierCourseGetterMap();
         for(SemesterStatus semesterStatus: student.getSemesterIdentifierCourseGetterMap().values()) {
+            SemesterStatus temp = semesterStatus;
             List<AttendedCourse> dummy = semesterStatus.getAttendedCourses();
+            for(AttendedCourse attendedCourse: dummy) {
+                attendedCourse.getId();
+                attendedCourse.getCourseUniqueId();
+            }
         }
 
         session.close();

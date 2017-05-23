@@ -22,15 +22,23 @@ public class AttendedCourseFromOtherUni extends AttendedCourse{
     @Column(name = "COURSE_TYPE")
     private CourseType courseType;
 
+    @Column(name = "CORR_COURSE_UNIQUE_ID")
+    private Integer correspondingCourseUniqueId;
+
     public AttendedCourseFromOtherUni(String studentFullName, String studentNumber, String courseName, Integer courseUnit, CourseType courseType) {
         super(studentFullName, studentNumber);
         this.courseUnit = courseUnit;
         this.courseName = courseName;
         this.courseType = courseType;
+        this.correspondingCourseUniqueId = -1;
     }
 
     protected AttendedCourseFromOtherUni() {
         super();
+    }
+
+    public Integer getCourseUniqueId() {
+        return correspondingCourseUniqueId;
     }
 
     public String getCourseName() {
@@ -56,4 +64,14 @@ public class AttendedCourseFromOtherUni extends AttendedCourse{
     public void setCourseType(CourseType courseType) {
         this.courseType = courseType;
     }
+
+    public Integer getCorrespondingCourseUniqueId() {
+        return correspondingCourseUniqueId;
+    }
+
+    public void setCorrespondingCourseUniqueId(Integer correspondingCourseUniqueId) {
+        this.correspondingCourseUniqueId = correspondingCourseUniqueId;
+    }
+
+
 }

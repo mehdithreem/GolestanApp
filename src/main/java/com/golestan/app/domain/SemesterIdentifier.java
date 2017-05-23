@@ -42,4 +42,22 @@ public class SemesterIdentifier {
         this.semester = semester;
         this.year = year;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SemesterIdentifier that = (SemesterIdentifier) o;
+
+        if (!year.equals(that.year)) return false;
+        return semester.equals(that.semester);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = year.hashCode();
+        result = 31 * result + semester.hashCode();
+        return result;
+    }
 }
