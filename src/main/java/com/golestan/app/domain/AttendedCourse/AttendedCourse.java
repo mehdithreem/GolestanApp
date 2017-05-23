@@ -22,6 +22,15 @@ abstract public class AttendedCourse {
     @Column( name = "STATUS")
     private String status;
 
+    @Column( name = "MARK")
+    private float mark;
+
+    @Column( name = "STUDENT_FULL_NAME")
+    private String studentFullName;
+
+    @Column( name = "STUDENT_NUMBER")
+    private String studentNumber;
+
     public String getStudentFullName() {
         return studentFullName;
     }
@@ -37,15 +46,6 @@ abstract public class AttendedCourse {
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
-
-    @Column( name = "MARK")
-    private float mark;
-
-    @Column( name = "STUDENT_FULL_NAME")
-    private String studentFullName;
-
-    @Column( name = "STUDENT_NUMBER")
-    private String studentNumber;
 
     public String getStatus() {
         return status;

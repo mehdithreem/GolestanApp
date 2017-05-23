@@ -3,6 +3,9 @@ package com.golestan.app.util;
 /**
  * Created by mehdithreem on 5/19/2017 AD.
  */
+import com.golestan.app.domain.AttendanceConditions.EducationalTopicsMatchCondition;
+import com.golestan.app.domain.AttendanceConditions.GPACondition;
+import com.golestan.app.domain.AttendanceConditions.OverlapCondition;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromOtherUni;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
@@ -21,7 +24,6 @@ import com.golestan.app.domain.Employee.Employee;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.Professor.CourseManager;
 import com.golestan.app.domain.Professor.Professor;
-import com.golestan.app.domain.Semester;
 import com.golestan.app.domain.SemesterIdentifier;
 import com.golestan.app.domain.Student.*;
 import org.hibernate.SessionFactory;
@@ -78,13 +80,10 @@ public class HibernateUtil {
                         .addAnnotatedClass(CourseManager.class)
                         .addAnnotatedClass(Professor.class)
                     .addPackage("com.golestan.app.domain.Student")
-                        .addAnnotatedClass(CourseGetter.class)
-                        .addAnnotatedClass(EducationalTopicsMatchCondition.class)
-                        .addAnnotatedClass(GPACondition.class)
+                        .addAnnotatedClass(SemesterStatus.class)
                         .addAnnotatedClass(GraduatedMatchForm.class)
                         .addAnnotatedClass(GuestStudent.class)
                         .addAnnotatedClass(License.class)
-                        .addAnnotatedClass(OverlapCondition.class)
                         .addAnnotatedClass(Student.class)
                     .getMetadataBuilder()
                     .applyImplicitNamingStrategy( ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )

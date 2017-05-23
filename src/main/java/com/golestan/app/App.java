@@ -50,7 +50,7 @@ public class App {
 //        else
 //            System.out.println(readCourseOffer.getCourse().getName());
 
-        List<CourseOffer> readCourseOffers = CourseOfferRepository.getRepository().readBySemester(new SemesterIdentifier(1396,2));
+        List<CourseOffer> readCourseOffers = CourseOfferRepository.getRepository().readBySemesterWithCourse(new SemesterIdentifier(1396,2));
 
         System.out.println(readCourseOffers.size());
 

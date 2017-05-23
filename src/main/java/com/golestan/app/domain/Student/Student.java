@@ -20,7 +20,7 @@ public class Student {
     private GraduatedMatchForm graduatedMatchingForm;
 
     @ElementCollection
-    private Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap;
+    private Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap;
 
     @Id
     @Column( name = "ID_NUMBER")
@@ -50,11 +50,11 @@ public class Student {
         this.educationalMajor = educationalMajor;
     }
 
-    public Map<SemesterIdentifier, CourseGetter> getSemesterIdentifierCourseGetterMap() {
+    public Map<SemesterIdentifier, SemesterStatus> getSemesterIdentifierCourseGetterMap() {
         return semesterIdentifierCourseGetterMap;
     }
 
-    public void setSemesterIdentifierCourseGetterMap(Map<SemesterIdentifier, CourseGetter> semesterIdentifierCourseGetterMap) {
+    public void setSemesterIdentifierCourseGetterMap(Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap) {
         this.semesterIdentifierCourseGetterMap = semesterIdentifierCourseGetterMap;
     }
 }

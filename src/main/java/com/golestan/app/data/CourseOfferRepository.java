@@ -65,7 +65,7 @@ public class CourseOfferRepository {
         return coff;
     }
 
-    public List<CourseOffer> readBySemester(SemesterIdentifier id) {
+    public List<CourseOffer> readBySemesterWithCourse(SemesterIdentifier id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -80,6 +80,9 @@ public class CourseOfferRepository {
         query.setParameter(semester, id);
 
         List<CourseOffer> courseOffers = query.getResultList();
+
+        for (CourseOffer coff: courseOffers)
+            coff.getCourse().getId();
 
         session.close();
         return courseOffers;

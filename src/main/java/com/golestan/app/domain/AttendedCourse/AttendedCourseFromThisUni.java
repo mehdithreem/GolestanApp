@@ -2,10 +2,7 @@ package com.golestan.app.domain.AttendedCourse;
 
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by nahal on 5/20/2017 AD.
@@ -15,7 +12,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("FROM_THIS_UNI")
 public class AttendedCourseFromThisUni extends AttendedCourse {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private CourseOffer courseOffer;
 
     public CourseOffer getCourseOffer() {

@@ -1,16 +1,18 @@
 package com.golestan.app.domain.Student;
 
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.Condition;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nahal on 5/19/2017 AD.
  */
 @Entity
-@Table(name="COURSE_GETTER")
-public class CourseGetter {
+@Table(name="SEMESTER_STATUS")
+public class SemesterStatus {
     @Id
     @GeneratedValue
     @Column(name="id")
@@ -32,14 +34,34 @@ public class CourseGetter {
     private List<License> licenses;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Condition> conditions;
+    private List<AttendedCourse> attendedCourses;
 
-    public List<Condition> getConditions() {
-        return conditions;
+    public SemesterStatus(String fullName, String studentNumber) {
+        this.studentFullName = fullName;
+        this.studentNumber = studentNumber;
+        this.status = "در حال اخذ";
+        this.gpa = 0;
+        this.licenses = new ArrayList<License>();
+        this.attendedCourses = new ArrayList<AttendedCourse>();
     }
 
-    public void setConditions(List<Condition> conditions) {
-        this.conditions = conditions;
+    protected SemesterStatus() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<AttendedCourse> getAttendedCourses() {
+        return attendedCourses;
+    }
+
+    public void setAttendedCourses(List<AttendedCourse> attendedCourses) {
+        this.attendedCourses = attendedCourses;
     }
 
     public String getStatus() {
@@ -80,5 +102,13 @@ public class CourseGetter {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public addAttendedCourse(AttendedCourse attendedCourse) {
+        this.attendedCourses.add(attendedCourse);
+    }
+
+    public addLicense(License license) {
+        this.licenses.add(license);
     }
 }
