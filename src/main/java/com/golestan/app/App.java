@@ -26,6 +26,11 @@ import java.util.List;
  * Hello world!
  */
 public class App {
+    public createDummyCourses() {
+
+    }
+
+
     public static void main(String[] args) {
         System.out.println("App started");
 
@@ -66,17 +71,22 @@ public class App {
 //        AttendedCourse attCourse2 = new AttendedCourseFromOtherUni("Ali", "214", "Riazi1", 3, CourseType.Theory);
 //
 //        AttendedCourseRepository.getRepository().create(attCourse2);
-        Individual ind = new Individual("123456", "nahal", "mir");
+//        Individual ind = new Individual("123456", "nahal", "mir");
+//
+//        IndividualRepository.getRepository().create(ind);
+//
+//        Student student = new Student(ind,"12341", null);
+//
+//        SemesterStatus semesterStatus = new SemesterStatus(ind.getFirstName(), student.getStudentNumber(), new SemesterIdentifier(96, 1));
+//
+//        student.addSemesterStatus(semesterStatus);
+//
+//        StudentRepository.getRepository().create(student);
 
-        IndividualRepository.getRepository().create(ind);
+        Student student = StudentRepository.getRepository().readByStudentNumber("12341");
 
-        Student student = new Student(ind,"12341", null);
-
-        SemesterStatus semesterStatus = new SemesterStatus(ind.getFirstName(), student.getStudentNumber(), new SemesterIdentifier(96, 1));
-
-        student.addSemesterStatus(semesterStatus);
-
-        StudentRepository.getRepository().create(student);
+        for(SemesterStatus semesterStatus: student.getSemesterIdentifierCourseGetterMap().values())
+            System.out.println(semesterStatus.getStatus());
 
 
 //        CourseOffer riazi = new CourseOffer();
