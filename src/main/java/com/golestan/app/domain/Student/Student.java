@@ -1,6 +1,7 @@
 package com.golestan.app.domain.Student;
 
 import com.golestan.app.data.SemesterStatusRepository;
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.Person.Character;
@@ -8,7 +9,9 @@ import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -92,4 +95,13 @@ public class Student extends Character {
 
         SemesterStatusRepository.getRepository().updateAttendedCourses(semesterStatus);
     }
+
+    public List<AttendedCourse> getAttendedCourses(){
+        List<AttendedCourse> res =  new ArrayList<AttendedCourse>();
+        for (Map.Entry<SemesterIdentifier, SemesterStatus> semester : semesterIdentifierCourseGetterMap.entrySet() ){
+            res.addAll(semester.getValue().getAttendedCourses());
+        }
+        return res;
+    }
+
 }
