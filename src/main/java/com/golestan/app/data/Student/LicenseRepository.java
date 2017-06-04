@@ -1,7 +1,5 @@
-package com.golestan.app.data;
+package com.golestan.app.data.Student;
 
-import com.golestan.app.domain.Condition;
-import com.golestan.app.domain.Course.Course;
 import com.golestan.app.domain.Student.License;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
@@ -10,15 +8,7 @@ import org.hibernate.Transaction;
 /**
  * Created by mehdithreem on 5/23/2017 AD.
  */
-public class LicenseRepository {
-    private static LicenseRepository theRepository = new LicenseRepository();
-    public static LicenseRepository getRepository() {
-        return theRepository;
-    }
-
-    private LicenseRepository() {
-    }
-
+class LicenseRepository {
     public void create(License license) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();

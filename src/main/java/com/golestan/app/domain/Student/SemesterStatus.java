@@ -1,9 +1,8 @@
 package com.golestan.app.domain.Student;
 
-import com.golestan.app.data.AttendedCourseRepository;
+import com.golestan.app.data.AttendanceConditions.AttendedCourseRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
-import com.golestan.app.domain.Condition;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.SemesterIdentifier;
 

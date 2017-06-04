@@ -1,7 +1,6 @@
-package com.golestan.app.data;
+package com.golestan.app.data.Person;
 
 import com.golestan.app.domain.Person.Individual;
-import com.golestan.app.domain.Student.License;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

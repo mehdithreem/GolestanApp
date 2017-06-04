@@ -1,13 +1,15 @@
 package com.golestan.app;
 
 import com.golestan.app.application.NtekhabVahed;
-import com.golestan.app.data.*;
+import com.golestan.app.data.AttendanceConditions.AttendedCourseRepository;
+import com.golestan.app.data.Course.CourseRepository;
+import com.golestan.app.data.CourseOffer.CourseOfferRepository;
 import com.golestan.app.data.EducationalMajor.EducationalMajorRepository;
 import com.golestan.app.data.EducationalTopics.EducationalTopicsRepository;
+import com.golestan.app.data.Person.IndividualRepository;
+import com.golestan.app.data.Student.StudentRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
-import com.golestan.app.domain.AttendedCourse.AttendedCourseFromOtherUni;
 import com.golestan.app.domain.AttendedCourse.AttendedCourseFromThisUni;
-import com.golestan.app.domain.Condition;
 import com.golestan.app.domain.Course.Course;
 import com.golestan.app.domain.Course.MinimumRequiredCourseUnitCondition;
 import com.golestan.app.domain.Course.PishniaziCondition;
@@ -106,7 +108,7 @@ public class App {
 
         initializeDB();
 
-//        NtekhabVahedScenario();
+        NtekhabVahedScenario();
 
         EducationalTopicsLesson lesson1 = new EducationalTopicsLesson("riazi1", 3, CourseType.Theory, 10);
         EducationalTopicsLesson lesson2 = new EducationalTopicsLesson("riazi2", 3, CourseType.Theory, 12);

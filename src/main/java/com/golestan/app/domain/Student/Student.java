@@ -1,6 +1,6 @@
 package com.golestan.app.domain.Student;
 
-import com.golestan.app.data.SemesterStatusRepository;
+import com.golestan.app.data.Student.StudentRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
@@ -93,7 +93,7 @@ public class Student extends Character {
 
         semesterStatus.register(courseOffer);
 
-        SemesterStatusRepository.getRepository().updateAttendedCourses(semesterStatus);
+        StudentRepository.getRepository().updateAttendedCourses(semesterStatus);
     }
 
     public List<AttendedCourse> getAttendedCourses(){

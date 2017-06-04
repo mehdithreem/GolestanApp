@@ -1,4 +1,4 @@
-package com.golestan.app.data;
+package com.golestan.app.data.Student;
 
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.Student.SemesterStatus;
@@ -23,12 +23,14 @@ public class StudentRepository {
         return theRepository;
     }
 
+    private SemesterStatusRepository semesterStatusRepository = new SemesterStatusRepository();
+
     public void create(Student student) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         for(SemesterStatus semesterStatus: student.getSemesterIdentifierCourseGetterMap().values())
-            SemesterStatusRepository.getRepository().create(semesterStatus);
+            this.semesterStatusRepository.create(semesterStatus);
 
         session.save(student);
         tx.commit();
@@ -65,4 +67,7 @@ public class StudentRepository {
         return student;
     }
 
+    public void updateAttendedCourses(SemesterStatus semesterStatus) {
+        this.semesterStatusRepository.updateAttendedCourses(semesterStatus);
+    }
 }

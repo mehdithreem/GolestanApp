@@ -1,4 +1,4 @@
-package com.golestan.app.data;
+package com.golestan.app.data.AttendanceConditions;
 
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.util.HibernateUtil;

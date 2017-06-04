@@ -1,11 +1,10 @@
-package com.golestan.app.data;
+package com.golestan.app.data.CourseOffer;
 
+import com.golestan.app.data.ConditionRepository;
 import com.golestan.app.domain.Condition;
-import com.golestan.app.domain.Course.Course;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.SemesterIdentifier;
 import com.golestan.app.util.HibernateUtil;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

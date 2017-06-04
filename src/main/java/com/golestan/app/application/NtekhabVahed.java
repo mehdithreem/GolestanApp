@@ -1,6 +1,6 @@
 package com.golestan.app.application;
 
-import com.golestan.app.data.CourseOfferRepository;
+import com.golestan.app.data.CourseOffer.CourseOfferRepository;
 import com.golestan.app.domain.AttendanceConditions.AttendanceConditions;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.SemesterIdentifier;
