@@ -108,21 +108,23 @@ public class App {
 
         initializeDB();
 
-        NtekhabVahedScenario();
+//        NtekhabVahedScenario();
 
         EducationalTopicsLesson lesson1 = new EducationalTopicsLesson("riazi1", 3, CourseType.Theory, 10);
         EducationalTopicsLesson lesson2 = new EducationalTopicsLesson("riazi2", 3, CourseType.Theory, 12);
 
-        Block blockAsli = new Block(6);
-        blockAsli.addEducationalTopicsLesson(lesson1);
-        blockAsli.addEducationalTopicsLesson(lesson2);
+        Block blockAsli = new Block(6, "دروس اصلی");
+        blockAsli.addTatbighable(lesson1);
+        blockAsli.addTatbighable(lesson2);
 
         EducationalTopicsLesson lesson3 = new EducationalTopicsLesson("economics1", 3, CourseType.Theory, 34);
         EducationalTopicsLesson lesson4 = new EducationalTopicsLesson("graph theory", 3, CourseType.Theory, 36);
 
-        Block blockEkhtiari = new Block(3);
-        blockEkhtiari.addEducationalTopicsLesson(lesson3);
-        blockEkhtiari.addEducationalTopicsLesson(lesson4);
+        Block blockEkhtiari = new Block(3, "دروس اختیاری");
+        blockEkhtiari.addTatbighable(lesson3);
+        blockEkhtiari.addTatbighable(lesson4);
+
+        blockAsli.addTatbighable(blockEkhtiari);
 
         EducationalMajor major1 = new EducationalMajor(
                 new Major("Computer"),
@@ -139,9 +141,7 @@ public class App {
         EducationalMajorRepository.getRepository().create(major1);
         EducationalMajorRepository.getRepository().create(major2);
 
-        EducationalTopics topics = new EducationalTopics(major1);
-        topics.addBlock(blockAsli);
-        topics.addBlock(blockEkhtiari);
+        EducationalTopics topics = new EducationalTopics(major1, blockAsli);
 
         EducationalTopicsRepository.getRepository().create(topics);
 
@@ -149,16 +149,6 @@ public class App {
 
         System.out.println(readTopic.getEducationalMajor().getMajor().getName());
         System.out.println(readTopic.getEducationalMajor().getOrientation().getName());
-
-        System.out.println(readTopic.getBlocks().size());
-        for(Block block : readTopic.getBlocks()) {
-            System.out.println("\tBLOCK: " + String.valueOf(block.getId()));
-            System.out.println(block.getUnitPerBlock());
-            for(EducationalTopicsLesson lesson : block.getEducationalTopicsLessons()) {
-                System.out.println("\t\tLESSON: " + lesson.getName());
-                System.out.println(lesson.getCourseUniqueId());
-            }
-        }
 
         System.out.println("Press \"ENTER\" to continue...");
         Scanner scanner = new Scanner(System.in);

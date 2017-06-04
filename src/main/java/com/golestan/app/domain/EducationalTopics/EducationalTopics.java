@@ -21,20 +21,15 @@ public class EducationalTopics {
     @ManyToOne( fetch = FetchType.EAGER )
     private EducationalMajor educationalMajor;
 
-    @OneToMany( fetch = FetchType.LAZY )
-    private List<Block> blocks;
+    @ManyToOne( fetch = FetchType.LAZY )
+    private Tatbighable root;
 
-    public EducationalTopics(EducationalMajor educationalMajor) {
+    public EducationalTopics(EducationalMajor educationalMajor, Tatbighable root) {
         this.educationalMajor = educationalMajor;
-        this.blocks = new ArrayList<Block>();
+        this.root = root;
     }
 
     protected EducationalTopics() {
-
-    }
-
-    public void addBlock(Block block) {
-        this.blocks.add(block);
     }
 
     public EducationalMajor getEducationalMajor() {
@@ -45,14 +40,6 @@ public class EducationalTopics {
         this.educationalMajor = educationalMajor;
     }
 
-    public List<Block> getBlocks() {
-        return blocks;
-    }
-
-    public void setBlocks(List<Block> blocks) {
-        this.blocks = blocks;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -61,11 +48,19 @@ public class EducationalTopics {
         this.id = id;
     }
 
+    public Tatbighable getRoot() {
+        return root;
+    }
+
+    public void setRoot(Tatbighable root) {
+        this.root = root;
+    }
+
     public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
-        for(Block block : blocks){
-            if (! block.IsTatbigh(attendedCourses))
-                return false;
-        }
+//        for(Block block : blocks){
+//            if (! block.IsTatbigh(attendedCourses))
+//                return false;
+//        }
         return true;
     }
 }

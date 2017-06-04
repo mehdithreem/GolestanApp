@@ -20,6 +20,7 @@ import com.golestan.app.domain.EducationalMajor.Orientation;
 import com.golestan.app.domain.EducationalTopics.Block;
 import com.golestan.app.domain.EducationalTopics.EducationalTopics;
 import com.golestan.app.domain.EducationalTopics.EducationalTopicsLesson;
+import com.golestan.app.domain.EducationalTopics.Tatbighable;
 import com.golestan.app.domain.Employee.Employee;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.Professor.CourseManager;
@@ -68,6 +69,7 @@ public class HibernateUtil {
                         .addAnnotatedClass(Major.class)
                         .addAnnotatedClass(Orientation.class)
                     .addPackage("com.golestan.app.domain.EducationalTopics")
+                        .addAnnotatedClass(Tatbighable.class)
                         .addAnnotatedClass(Block.class)
                         .addAnnotatedClass(EducationalTopics.class)
                         .addAnnotatedClass(EducationalTopicsLesson.class)

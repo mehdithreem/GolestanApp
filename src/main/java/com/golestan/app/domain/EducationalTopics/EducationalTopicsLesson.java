@@ -1,7 +1,10 @@
 package com.golestan.app.domain.EducationalTopics;
 
 
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by nahal on 5/20/2017 AD.
@@ -10,11 +13,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Educational_Topics_Lesson")
-public class EducationalTopicsLesson {
-    @Id
-    @GeneratedValue
-    @Column(name="id")
-    private Integer id;
+public class EducationalTopicsLesson extends Tatbighable {
+//    @Id
+//    @GeneratedValue
+//    @Column(name="id")
+//    private Integer id;
 
     @Column( name = "NAME")
     private String name;
@@ -39,13 +42,13 @@ public class EducationalTopicsLesson {
     protected EducationalTopicsLesson() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public Integer getCourseUniqueId() {
         return courseUniqueId;
@@ -77,5 +80,9 @@ public class EducationalTopicsLesson {
 
     public void setCourseType(CourseType courseType) {
         this.courseType = courseType;
+    }
+
+    public boolean tatbigh(List<AttendedCourse> attendedCourses) {
+        return true;
     }
 }

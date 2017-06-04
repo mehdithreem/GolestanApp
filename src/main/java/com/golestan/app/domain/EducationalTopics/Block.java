@@ -12,46 +12,41 @@ import java.util.List;
 
 @Entity
 @Table(name = "BLOCK")
-public class Block {
-    @Id
-    @GeneratedValue
-    @Column(name="id")
-    private Integer id;
+public class Block extends Tatbighable {
+//    @Id
+//    @GeneratedValue
+//    @Column(name="id")
+//    private Integer id;
+
+    @Column(name="name")
+    private String name;
 
     @Column(name="unit_per_block")
     private Integer unitPerBlock;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<EducationalTopicsLesson> educationalTopicsLessons;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Tatbighable> tatbighables;
 
-    public List<EducationalTopicsLesson> getEducationalTopicsLessons() {
-        return educationalTopicsLessons;
-    }
-
-    public void setEducationalTopicsLessons(List<EducationalTopicsLesson> educationalTopicsLessons) {
-        this.educationalTopicsLessons = educationalTopicsLessons;
-    }
-
-    public Block(Integer unitPerBlock) {
+    public Block(Integer unitPerBlock, String name) {
         this.unitPerBlock = unitPerBlock;
-        this.educationalTopicsLessons = new ArrayList<EducationalTopicsLesson>();
+        this.tatbighables = new ArrayList<Tatbighable>();
+        this.name = name;
     }
 
     protected Block() {
-
     }
 
-    public void addEducationalTopicsLesson(EducationalTopicsLesson lesson) {
-        this.educationalTopicsLessons.add(lesson);
+    public void addTatbighable(Tatbighable tatbighable) {
+        this.tatbighables.add(tatbighable);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public Integer getUnitPerBlock() {
         return unitPerBlock;
@@ -61,21 +56,37 @@ public class Block {
         this.unitPerBlock = unitPerBlock;
     }
 
-    public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
-        Integer lpb = 0;
-        for(AttendedCourse attendedCourse : attendedCourses) {
-            boolean found = false;
-            for (EducationalTopicsLesson educationalTopicsLesson : educationalTopicsLessons) {
-                if (attendedCourse.getCourseUniqueId().equals(educationalTopicsLesson.getCourseUniqueId()))
-                    found = true;
-            }
-            if(found)
-                lpb +=1;
-            else
-                return false;
-        }
-        if(lpb != unitPerBlock)
-            return false;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Tatbighable> getTatbighables() {
+        return tatbighables;
+    }
+
+    public void setTatbighables(List<Tatbighable> tatbighables) {
+        this.tatbighables = tatbighables;
+    }
+
+    public boolean tatbigh(List<AttendedCourse> attendedCourses){
+//        Integer lpb = 0;
+//        for(AttendedCourse attendedCourse : attendedCourses) {
+//            boolean found = false;
+//            for (EducationalTopicsLesson educationalTopicsLesson : tatbighables) {
+//                if (attendedCourse.getCourseUniqueId().equals(educationalTopicsLesson.getCourseUniqueId()))
+//                    found = true;
+//            }
+//            if(found)
+//                lpb +=1;
+//            else
+//                return false;
+//        }
+//        if(lpb != unitPerBlock)
+//            return false;
 
         return true;
     }

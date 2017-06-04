@@ -2,6 +2,7 @@ package com.golestan.app.data.EducationalTopics;
 
 import com.golestan.app.domain.EducationalTopics.Block;
 import com.golestan.app.domain.EducationalTopics.EducationalTopicsLesson;
+import com.golestan.app.domain.EducationalTopics.Tatbighable;
 import org.hibernate.Session;
 
 /**
@@ -14,8 +15,14 @@ class BlockRepository {
     }
 
     public void create(Block block, Session session) {
-        for(EducationalTopicsLesson lesson : block.getEducationalTopicsLessons())
-            EducationalTopicsLessonRepository.getRepository().create(lesson, session);
+        for(Tatbighable tatbighable : block.getTatbighables()) {
+            if (tatbighable instanceof Block)
+                this.create((Block) tatbighable, session);
+            else if (tatbighable instanceof EducationalTopicsLesson)
+                EducationalTopicsLessonRepository.getRepository().create((EducationalTopicsLesson) tatbighable, session);
+            else
+                System.err.println("I don't know type of Tatbighable");
+        }
 
         session.save(block);
     }

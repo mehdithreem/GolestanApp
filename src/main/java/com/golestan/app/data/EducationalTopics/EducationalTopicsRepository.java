@@ -3,6 +3,8 @@ package com.golestan.app.data.EducationalTopics;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.EducationalTopics.Block;
 import com.golestan.app.domain.EducationalTopics.EducationalTopics;
+import com.golestan.app.domain.EducationalTopics.EducationalTopicsLesson;
+import com.golestan.app.domain.EducationalTopics.Tatbighable;
 import com.golestan.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,8 +29,13 @@ public class EducationalTopicsRepository {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        for(Block block : educationalTopics.getBlocks())
-            BlockRepository.getRepository().create(block, session);
+        Tatbighable root = educationalTopics.getRoot();
+
+        if (root instanceof Block)
+            BlockRepository.getRepository().create((Block) root, session);
+        else if (root instanceof EducationalTopicsLesson)
+            EducationalTopicsLessonRepository.getRepository().create((EducationalTopicsLesson) root, session);
+
 
         session.save(educationalTopics);
         tx.commit();
@@ -51,8 +58,7 @@ public class EducationalTopicsRepository {
 
         EducationalTopics educationalTopics = query.getSingleResult();
 
-        for(Block block : educationalTopics.getBlocks())
-            block.getId();
+        Tatbighable root = educationalTopics.getRoot();
 
         session.close();
         return educationalTopics;
