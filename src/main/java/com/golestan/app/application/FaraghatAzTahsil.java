@@ -25,5 +25,6 @@ public class FaraghatAzTahsil {
                                                 .getRepository()
                                                 .read(educationalMajor.getMajor().getId(), educationalMajor.getOrientation().getId());
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
+        boolean tatbighed = educationalTopics.IsTatbigh(attendedCourses);
     }
 }

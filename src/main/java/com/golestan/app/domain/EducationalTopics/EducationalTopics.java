@@ -1,5 +1,6 @@
 package com.golestan.app.domain.EducationalTopics;
 
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 
 import javax.persistence.*;
@@ -36,5 +37,12 @@ public class EducationalTopics {
 
     public void setBlocks(List<Block> blocks) {
         this.blocks = blocks;
+    }
+    public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
+        for(Block block : blocks){
+            if (! block.IsTatbigh(attendedCourses))
+                return false;
+        }
+        return true;
     }
 }

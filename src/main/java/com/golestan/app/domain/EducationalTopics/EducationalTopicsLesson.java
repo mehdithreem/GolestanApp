@@ -26,6 +26,25 @@ public class EducationalTopicsLesson {
     @Column( name = "COURSE_TYPE")
     private CourseType courseType;
 
+    @Column(name="COURSE_UNIQUE_ID")
+    private Integer courseUniqueId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCourseUniqueId() {
+        return courseUniqueId;
+    }
+
+    public void setCourseUniqueId(Integer courseUniqueId) {
+        this.courseUniqueId = courseUniqueId;
+    }
+
     public String getName() {
         return name;
     }

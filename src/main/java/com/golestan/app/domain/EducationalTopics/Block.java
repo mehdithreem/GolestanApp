@@ -1,5 +1,7 @@
 package com.golestan.app.domain.EducationalTopics;
 
+import com.golestan.app.domain.AttendedCourse.AttendedCourse;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,9 @@ public class Block {
     @Column(name="id")
     private Integer id;
 
+    @Column(name="lessons_per_block")
+    private Integer lessons_per_block;
+
     @OneToMany(fetch = FetchType.EAGER)
     private List<EducationalTopicsLesson> educationalTopicsLessons;
 
@@ -24,5 +29,24 @@ public class Block {
 
     public void setEducationalTopicsLessons(List<EducationalTopicsLesson> educationalTopicsLessons) {
         this.educationalTopicsLessons = educationalTopicsLessons;
+    }
+
+    public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
+        Integer lpb = 0;
+        for(AttendedCourse attendedCourse : attendedCourses) {
+            boolean found = false;
+            for (EducationalTopicsLesson educationalTopicsLesson : educationalTopicsLessons) {
+                if (attendedCourse.getCourseUniqueId().equals(educationalTopicsLesson.getCourseUniqueId()))
+                    found = true;
+            }
+            if(found)
+                lpb +=1;
+            else
+                return false;
+        }
+        if(lpb != lessons_per_block)
+            return false;
+
+        return true;
     }
 }
