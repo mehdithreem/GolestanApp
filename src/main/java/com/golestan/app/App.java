@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 
 public class App {
-    public static void initialize() {
+    public static void initializeDB() {
         Course riazi1 = new Course("Riazi 1", 3, 10);
         riazi1.addCondtion(new MinimumRequiredCourseUnitCondition("حداقل واحد درس ریاضی ۱"));
 
@@ -67,12 +67,7 @@ public class App {
         StudentRepository.getRepository().create(student);
     }
 
-
-    public static void main(String[] args) {
-        System.out.println("App started");
-
-        initialize();
-
+    public static void NtekhabVahedScenario() {
         Student student = StudentRepository.getRepository().readByStudentNumber("810192558");
 
         System.out.println("Hello " + student.getIndividual().getFirstName());
@@ -96,6 +91,15 @@ public class App {
             System.out.println("Successful");
         else
             System.out.println("You cannot attend this course.");
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println("App started");
+
+        initializeDB();
+
+        NtekhabVahedScenario();
 
         HibernateUtil.shutdown();
     }

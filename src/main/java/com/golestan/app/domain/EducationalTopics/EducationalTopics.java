@@ -17,10 +17,10 @@ public class EducationalTopics {
     @Column(name="id")
     private Integer id;
 
-    @Embedded
+    @ManyToOne( fetch = FetchType.EAGER )
     private EducationalMajor educationalMajor;
 
-    @OneToMany
+    @OneToMany( fetch = FetchType.LAZY )
     private List<Block> blocks;
 
     public EducationalMajor getEducationalMajor() {
@@ -38,6 +38,15 @@ public class EducationalTopics {
     public void setBlocks(List<Block> blocks) {
         this.blocks = blocks;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
         for(Block block : blocks){
             if (! block.IsTatbigh(attendedCourses))

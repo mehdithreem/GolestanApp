@@ -31,6 +31,22 @@ public class Block {
         this.educationalTopicsLessons = educationalTopicsLessons;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getLessons_per_block() {
+        return lessons_per_block;
+    }
+
+    public void setLessons_per_block(Integer lessons_per_block) {
+        this.lessons_per_block = lessons_per_block;
+    }
+
     public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
         Integer lpb = 0;
         for(AttendedCourse attendedCourse : attendedCourses) {

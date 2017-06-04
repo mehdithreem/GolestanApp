@@ -1,12 +1,11 @@
 package com.golestan.app.application;
 
-import com.golestan.app.data.EducationalTopicsRepository;
+import com.golestan.app.data.EducationalTopics.EducationalTopicsRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.EducationalTopics.EducationalTopics;
 import com.golestan.app.domain.Student.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

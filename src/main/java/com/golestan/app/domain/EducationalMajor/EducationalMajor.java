@@ -5,14 +5,38 @@ import javax.persistence.*;
 /**
  * Created by nahal on 5/20/2017 AD.
  */
-@Embeddable
+@Entity
+@Table(
+        name= "EDUCATIONAL_MAJOR",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"YEAR", "major_name", "orientation_name"}
+                )
+        })
 public class EducationalMajor {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private int id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @Embedded
+    @AttributeOverride( name = "name", column = @Column(name = "major_name"))
     private Major major;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @Embedded
+    @AttributeOverride( name = "name", column = @Column(name = "orientation_name"))
     private Orientation orientation;
+
+    @Column( name="YEAR")
+    private Integer year;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
 
     public Major getMajor() {
         return major;
@@ -28,5 +52,13 @@ public class EducationalMajor {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

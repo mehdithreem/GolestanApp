@@ -25,7 +25,7 @@ public class Student extends Character {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
-    @Embedded
+    @ManyToOne( fetch = FetchType.EAGER )
     private EducationalMajor educationalMajor;
 
     @Embedded
