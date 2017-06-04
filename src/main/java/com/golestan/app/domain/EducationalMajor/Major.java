@@ -12,6 +12,14 @@ public class Major {
     @Column(name = "name")
     private String name;
 
+    public Major(String name) {
+        this.name = name;
+    }
+
+    protected Major() {
+
+    }
+
     public String getName() {
         return name;
     }

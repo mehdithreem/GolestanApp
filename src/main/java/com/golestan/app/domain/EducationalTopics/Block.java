@@ -3,6 +3,7 @@ package com.golestan.app.domain.EducationalTopics;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public class Block {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="lessons_per_block")
-    private Integer lessons_per_block;
+    @Column(name="unit_per_block")
+    private Integer unitPerBlock;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<EducationalTopicsLesson> educationalTopicsLessons;
@@ -31,6 +32,19 @@ public class Block {
         this.educationalTopicsLessons = educationalTopicsLessons;
     }
 
+    public Block(Integer unitPerBlock) {
+        this.unitPerBlock = unitPerBlock;
+        this.educationalTopicsLessons = new ArrayList<EducationalTopicsLesson>();
+    }
+
+    protected Block() {
+
+    }
+
+    public void addEducationalTopicsLesson(EducationalTopicsLesson lesson) {
+        this.educationalTopicsLessons.add(lesson);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -39,12 +53,12 @@ public class Block {
         this.id = id;
     }
 
-    public Integer getLessons_per_block() {
-        return lessons_per_block;
+    public Integer getUnitPerBlock() {
+        return unitPerBlock;
     }
 
-    public void setLessons_per_block(Integer lessons_per_block) {
-        this.lessons_per_block = lessons_per_block;
+    public void setUnitPerBlock(Integer unitPerBlock) {
+        this.unitPerBlock = unitPerBlock;
     }
 
     public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
@@ -60,7 +74,7 @@ public class Block {
             else
                 return false;
         }
-        if(lpb != lessons_per_block)
+        if(lpb != unitPerBlock)
             return false;
 
         return true;

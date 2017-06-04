@@ -71,6 +71,7 @@ public class CourseOfferRepository {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<CourseOffer> criteria = builder.createQuery(CourseOffer.class);
         Root<CourseOffer> courseOfferRoot = criteria.from( CourseOffer.class );
+
         ParameterExpression<SemesterIdentifier> semester = builder.parameter(SemesterIdentifier.class);
 
         criteria.select(courseOfferRoot);

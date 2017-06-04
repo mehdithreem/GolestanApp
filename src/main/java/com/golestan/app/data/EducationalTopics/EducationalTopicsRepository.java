@@ -51,7 +51,8 @@ public class EducationalTopicsRepository {
 
         EducationalTopics educationalTopics = query.getSingleResult();
 
-        List<Block> blocks = educationalTopics.getBlocks();
+        for(Block block : educationalTopics.getBlocks())
+            block.getId();
 
         session.close();
         return educationalTopics;

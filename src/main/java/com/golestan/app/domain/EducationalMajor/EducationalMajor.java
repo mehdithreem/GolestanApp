@@ -30,6 +30,15 @@ public class EducationalMajor {
     @Column( name="YEAR")
     private Integer year;
 
+    public EducationalMajor(Major major, Orientation orientation, Integer year) {
+        this.major = major;
+        this.orientation = orientation;
+        this.year = year;
+    }
+
+    protected EducationalMajor() {
+    }
+
     public Integer getYear() {
         return year;
     }

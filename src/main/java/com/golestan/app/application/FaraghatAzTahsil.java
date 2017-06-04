@@ -22,7 +22,7 @@ public class FaraghatAzTahsil {
         //repo is not implemented
         EducationalTopics educationalTopics = EducationalTopicsRepository
                                                 .getRepository()
-                                                .read(educationalMajor.getMajor().getId(), educationalMajor.getOrientation().getId());
+                                                .readByEducationalMajorWithBlocks(educationalMajor);
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
         boolean tatbighed = educationalTopics.IsTatbigh(attendedCourses);
     }

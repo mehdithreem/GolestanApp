@@ -4,6 +4,7 @@ import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,19 @@ public class EducationalTopics {
 
     @OneToMany( fetch = FetchType.LAZY )
     private List<Block> blocks;
+
+    public EducationalTopics(EducationalMajor educationalMajor) {
+        this.educationalMajor = educationalMajor;
+        this.blocks = new ArrayList<Block>();
+    }
+
+    protected EducationalTopics() {
+
+    }
+
+    public void addBlock(Block block) {
+        this.blocks.add(block);
+    }
 
     public EducationalMajor getEducationalMajor() {
         return educationalMajor;

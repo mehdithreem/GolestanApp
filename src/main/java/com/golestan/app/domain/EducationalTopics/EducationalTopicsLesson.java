@@ -20,7 +20,7 @@ public class EducationalTopicsLesson {
     private String name;
 
     @Column( name = "COURSE_UNIT")
-    private int CourseUnit;
+    private int courseUnit;
 
     @Enumerated(EnumType.STRING)
     @Column( name = "COURSE_TYPE")
@@ -28,6 +28,16 @@ public class EducationalTopicsLesson {
 
     @Column(name="COURSE_UNIQUE_ID")
     private Integer courseUniqueId;
+
+    public EducationalTopicsLesson(String name, int courseUnit, CourseType courseType, Integer courseUniqueId) {
+        this.name = name;
+        this.courseUnit = courseUnit;
+        this.courseType = courseType;
+        this.courseUniqueId = courseUniqueId;
+    }
+
+    protected EducationalTopicsLesson() {
+    }
 
     public Integer getId() {
         return id;
@@ -54,11 +64,11 @@ public class EducationalTopicsLesson {
     }
 
     public int getCourseUnit() {
-        return CourseUnit;
+        return courseUnit;
     }
 
     public void setCourseUnit(int courseUnit) {
-        CourseUnit = courseUnit;
+        this.courseUnit = courseUnit;
     }
 
     public CourseType getCourseType() {
