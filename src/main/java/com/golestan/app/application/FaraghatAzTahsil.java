@@ -19,11 +19,10 @@ public class FaraghatAzTahsil {
 
     public void FareghKon(Student student){
         EducationalMajor educationalMajor = student.getEducationalMajor();
-        //repo is not implemented
         EducationalTopics educationalTopics = EducationalTopicsRepository
                                                 .getRepository()
                                                 .readByEducationalMajorWithBlocks(educationalMajor);
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
-        boolean tatbighed = educationalTopics.IsTatbigh(attendedCourses);
+        boolean tatbighed = educationalTopics.isTatbighed(attendedCourses);
     }
 }

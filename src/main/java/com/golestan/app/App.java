@@ -19,10 +19,7 @@ import com.golestan.app.domain.CourseOffer.UniEntryCondition;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
 import com.golestan.app.domain.EducationalMajor.Major;
 import com.golestan.app.domain.EducationalMajor.Orientation;
-import com.golestan.app.domain.EducationalTopics.Block;
-import com.golestan.app.domain.EducationalTopics.CourseType;
-import com.golestan.app.domain.EducationalTopics.EducationalTopics;
-import com.golestan.app.domain.EducationalTopics.EducationalTopicsLesson;
+import com.golestan.app.domain.EducationalTopics.*;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
 import com.golestan.app.domain.Student.SemesterStatus;
@@ -113,18 +110,23 @@ public class App {
         EducationalTopicsLesson lesson1 = new EducationalTopicsLesson("riazi1", 3, CourseType.Theory, 10);
         EducationalTopicsLesson lesson2 = new EducationalTopicsLesson("riazi2", 3, CourseType.Theory, 12);
 
-        Block blockAsli = new Block(6, "دروس اصلی");
+        Block blockAsli = new Block("دروس اصلی",6);
+        blockAsli.setTatbighMode(TatbighMode.ALL);
         blockAsli.addTatbighable(lesson1);
         blockAsli.addTatbighable(lesson2);
 
         EducationalTopicsLesson lesson3 = new EducationalTopicsLesson("economics1", 3, CourseType.Theory, 34);
         EducationalTopicsLesson lesson4 = new EducationalTopicsLesson("graph theory", 3, CourseType.Theory, 36);
 
-        Block blockEkhtiari = new Block(3, "دروس اختیاری");
+        Block blockEkhtiari = new Block("دروس اختیاری",3);
+        blockEkhtiari.setTatbighMode(TatbighMode.SOME);
         blockEkhtiari.addTatbighable(lesson3);
         blockEkhtiari.addTatbighable(lesson4);
 
-        blockAsli.addTatbighable(blockEkhtiari);
+        Block rootBlock = new Block("ریشه", 9);
+        rootBlock.setTatbighMode(TatbighMode.ALL);
+        rootBlock.addTatbighable(blockAsli);
+        rootBlock.addTatbighable(blockEkhtiari);
 
         EducationalMajor major1 = new EducationalMajor(
                 new Major("Computer"),
@@ -141,7 +143,7 @@ public class App {
         EducationalMajorRepository.getRepository().create(major1);
         EducationalMajorRepository.getRepository().create(major2);
 
-        EducationalTopics topics = new EducationalTopics(major1, blockAsli);
+        EducationalTopics topics = new EducationalTopics(major1, rootBlock);
 
         EducationalTopicsRepository.getRepository().create(topics);
 

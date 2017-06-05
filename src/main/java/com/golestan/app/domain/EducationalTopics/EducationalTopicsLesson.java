@@ -14,10 +14,6 @@ import java.util.List;
 @Entity
 @Table(name = "Educational_Topics_Lesson")
 public class EducationalTopicsLesson extends Tatbighable {
-//    @Id
-//    @GeneratedValue
-//    @Column(name="id")
-//    private Integer id;
 
     @Column( name = "NAME")
     private String name;
@@ -41,14 +37,6 @@ public class EducationalTopicsLesson extends Tatbighable {
 
     protected EducationalTopicsLesson() {
     }
-
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
 
     public Integer getCourseUniqueId() {
         return courseUniqueId;
@@ -82,7 +70,23 @@ public class EducationalTopicsLesson extends Tatbighable {
         this.courseType = courseType;
     }
 
-    public boolean tatbigh(List<AttendedCourse> attendedCourses) {
-        return true;
+    public ITatbighed tatbigh(List<AttendedCourse> attendedCourses) {
+        Boolean tatbighed = false;
+        Integer tatbighCount = 0;
+
+        for(AttendedCourse attendedCourse: attendedCourses) {
+            if (attendedCourse.getCourseUniqueId().equals(courseUniqueId)) {
+                tatbighed = true;
+                tatbighCount = courseUnit;
+                attendedCourses.remove(attendedCourse);
+                break;
+            }
+        }
+
+        return new MyTatbighed(tatbighed, tatbighCount);
+    }
+
+    public Integer minUnit() {
+        return courseUnit;
     }
 }

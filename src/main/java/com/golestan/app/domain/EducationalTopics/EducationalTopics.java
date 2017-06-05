@@ -56,11 +56,7 @@ public class EducationalTopics {
         this.root = root;
     }
 
-    public boolean IsTatbigh(List<AttendedCourse> attendedCourses){
-//        for(Block block : blocks){
-//            if (! block.IsTatbigh(attendedCourses))
-//                return false;
-//        }
-        return true;
+    public boolean isTatbighed(List<AttendedCourse> attendedCourses) {
+        return root.tatbigh(attendedCourses).isTatbighed();
     }
 }

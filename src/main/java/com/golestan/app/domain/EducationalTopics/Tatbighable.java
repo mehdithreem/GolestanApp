@@ -17,7 +17,9 @@ public abstract class Tatbighable {
     @Column(name="root_id")
     private Integer rootId;
 
-    public abstract boolean tatbigh(List<AttendedCourse> attendedCourses);
+    public abstract ITatbighed tatbigh(List<AttendedCourse> attendedCourses);
+
+    public abstract Integer minUnit();
 
     public Integer getRootId() {
         return rootId;

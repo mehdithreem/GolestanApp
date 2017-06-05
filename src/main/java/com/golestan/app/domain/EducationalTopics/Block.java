@@ -13,11 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "BLOCK")
 public class Block extends Tatbighable {
-//    @Id
-//    @GeneratedValue
-//    @Column(name="id")
-//    private Integer id;
-
     @Column(name="name")
     private String name;
 
@@ -27,10 +22,15 @@ public class Block extends Tatbighable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Tatbighable> tatbighables;
 
-    public Block(Integer unitPerBlock, String name) {
+    @Enumerated(EnumType.STRING)
+    @Column( name = "TATBIGHED_MODE")
+    private TatbighMode tatbighMode;
+
+    public Block(String name, Integer unitPerBlock) {
         this.unitPerBlock = unitPerBlock;
         this.tatbighables = new ArrayList<Tatbighable>();
         this.name = name;
+        tatbighMode = TatbighMode.SOME;
     }
 
     protected Block() {
@@ -40,13 +40,13 @@ public class Block extends Tatbighable {
         this.tatbighables.add(tatbighable);
     }
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+    public TatbighMode getTatbighMode() {
+        return tatbighMode;
+    }
+
+    public void setTatbighMode(TatbighMode tatbighMode) {
+        this.tatbighMode = tatbighMode;
+    }
 
     public Integer getUnitPerBlock() {
         return unitPerBlock;
@@ -72,22 +72,52 @@ public class Block extends Tatbighable {
         this.tatbighables = tatbighables;
     }
 
-    public boolean tatbigh(List<AttendedCourse> attendedCourses){
-//        Integer lpb = 0;
-//        for(AttendedCourse attendedCourse : attendedCourses) {
-//            boolean found = false;
-//            for (EducationalTopicsLesson educationalTopicsLesson : tatbighables) {
-//                if (attendedCourse.getCourseUniqueId().equals(educationalTopicsLesson.getCourseUniqueId()))
-//                    found = true;
-//            }
-//            if(found)
-//                lpb +=1;
-//            else
-//                return false;
-//        }
-//        if(lpb != unitPerBlock)
-//            return false;
+    public ITatbighed tatbigh(List<AttendedCourse> attendedCourses) {
+        if (tatbighMode == TatbighMode.ALL)
+            return tatbighAll(attendedCourses);
+        else if (tatbighMode == TatbighMode.SOME)
+            return tatbighSome(attendedCourses);
+        else if (tatbighMode == TatbighMode.ONE)
+            return tatbighOne(attendedCourses);
 
-        return true;
+        return new MyTatbighed(false, 0);
+    }
+
+    private ITatbighed tatbighAll(List<AttendedCourse> attendedCourses) {
+        Boolean result = true;
+        Integer total = 0;
+        for(Tatbighable tatbighable : tatbighables) {
+            ITatbighed tatbighed = tatbighable.tatbigh(attendedCourses);
+            result = result && tatbighed.isTatbighed();
+            total = total + tatbighed.tatbighedCount();
+        }
+
+        return new MyTatbighed(result, total);
+    }
+
+    private ITatbighed tatbighSome(List<AttendedCourse> attendedCourses) {
+        Integer total = 0;
+        for(Tatbighable tatbighable : tatbighables) {
+            ITatbighed tatbighed = tatbighable.tatbigh(attendedCourses);
+            total = total + tatbighed.tatbighedCount();
+        }
+
+        return new MyTatbighed(total >= unitPerBlock , total);
+    }
+
+    private ITatbighed tatbighOne(List<AttendedCourse> attendedCourses) {
+        Boolean result = false;
+        Integer total = 0;
+        for(Tatbighable tatbighable : tatbighables) {
+            ITatbighed tatbighed = tatbighable.tatbigh(attendedCourses);
+            result = result || tatbighed.isTatbighed();
+            total = total + tatbighed.tatbighedCount();
+        }
+
+        return new MyTatbighed(result, total);
+    }
+
+    public Integer minUnit() {
+        return unitPerBlock;
     }
 }
