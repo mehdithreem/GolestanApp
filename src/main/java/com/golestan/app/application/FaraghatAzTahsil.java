@@ -25,10 +25,22 @@ public class FaraghatAzTahsil {
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
 
         boolean tatbighed = educationalTopics.isTatbighed(attendedCourses);
+        FareghKonMajor(student, attendedCourses);
 
         if (tatbighed)
             System.out.println("Tatbighed.");
         else
             System.out.println("Not Tatbighed");
+    }
+
+    private boolean FareghKonMajor(Student student, List<AttendedCourse> attendedCourses) {
+        EducationalMajor educationalMajor = student.getEducationalMajor();
+        EducationalTopics educationalTopics = EducationalTopicsRepository
+                .getRepository()
+                .readByEducationalMajorWithBlocks(educationalMajor);
+
+        System.out.println("count" + String.valueOf(attendedCourses.size()));
+
+        return educationalTopics.isTatbighed(attendedCourses);
     }
 }

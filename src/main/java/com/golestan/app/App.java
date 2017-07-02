@@ -93,6 +93,53 @@ public class App {
         EducationalTopicsRepository.getRepository().create(topics);
     }
 
+    public static void createMinorChart() {
+        EducationalTopicsLesson lesson1 = new EducationalTopicsLesson("ریاضیات گسسته", 3, CourseType.Theory, 401);
+        EducationalTopicsLesson lesson2 = new EducationalTopicsLesson("ساختمان داده", 3, CourseType.Theory, 402);
+
+        Block blockAsli = new Block("دروس اصلی", 6);
+        blockAsli.setTatbighMode(TatbighMode.ALL);
+        blockAsli.addTatbighable(lesson1);
+        blockAsli.addTatbighable(lesson2);
+
+        EducationalTopicsLesson lesson4 = new EducationalTopicsLesson("الگوریتم ۱", 3, CourseType.Theory, 403);
+        EducationalTopicsLesson lesson5 = new EducationalTopicsLesson("الگوریتم ۲", 3, CourseType.Theory, 404);
+
+        Block blockAlgorithm = new Block("دروس تخصصی الگوریتم", 6);
+        blockAlgorithm.setTatbighMode(TatbighMode.ALL);
+        blockAlgorithm.addTatbighable(lesson4);
+        blockAlgorithm.addTatbighable(lesson5);
+
+        EducationalTopicsLesson lesson6 = new EducationalTopicsLesson("بهینه‌سازی ۱", 3, CourseType.Theory, 405);
+        EducationalTopicsLesson lesson7 = new EducationalTopicsLesson("بهینه‌سازی ۲", 3, CourseType.Theory, 406);
+
+        Block blockOptimization = new Block("دروس تخصصی بهینه‌سازی", 6);
+        blockOptimization.setTatbighMode(TatbighMode.ALL);
+        blockOptimization.addTatbighable(lesson6);
+        blockOptimization.addTatbighable(lesson7);
+
+        Block blockTakhasosi = new Block("دروس تخصصی", 6);
+        blockTakhasosi.setTatbighMode(TatbighMode.ONE);
+        blockTakhasosi.addTatbighable(blockOptimization);
+        blockTakhasosi.addTatbighable(blockAlgorithm);
+
+        Block rootBlock = new Block("ریشه", 9);
+        rootBlock.setTatbighMode(TatbighMode.ALL);
+        rootBlock.addTatbighable(blockAsli);
+        rootBlock.addTatbighable(blockTakhasosi);
+
+        EducationalMajor major1 = new EducationalMajor(
+                new Major("Computer"),
+                new Orientation("Minor CS"),
+                1392
+        );
+
+        EducationalMajorRepository.getRepository().create(major1);
+
+        EducationalTopics topics = new EducationalTopics(major1, rootBlock);
+        EducationalTopicsRepository.getRepository().create(topics);
+    }
+
     public static void initializeNtekhabVahed() {
         // create courses
         Course riazi1 = new Course("ریاضی ۱", 3, 101);
@@ -148,11 +195,18 @@ public class App {
                 1392
         );
 
+        EducationalMajor minor = EducationalMajorRepository.getRepository().readByMajorOrientationYear(
+                new Major("Computer"),
+                new Orientation("Minor CS"),
+                1392
+        );
+
         // create individual
         Individual individual = new Individual("09102005", "نهال", "میرزایی");
         IndividualRepository.getRepository().create(individual);
 
         Student student = new Student(individual, "810192489", major);
+        student.addMinor(minor);
 
         // create last semester
         SemesterStatus semesterStatusOld = new SemesterStatus(individual.getFirstName() + individual.getLastName(), student.getStudentNumber(), new SemesterIdentifier(1395, 1));
@@ -183,6 +237,34 @@ public class App {
         StudentRepository.getRepository().create(student);
     }
 
+    public static void initializeNtekhabVahedMinor() {
+        // create courses
+        Course dm = new Course("ساختمان گسسته", 3, 401);
+        CourseRepository.getRepository().create(dm);
+
+        Course ds = new Course("ساختمان داده", 3, 402);
+        ds.addCondtion(new PishniaziCondition("پیش نیازی ساختمان گسسته", dm));
+        CourseRepository.getRepository().create(ds);
+
+        Course alg1 = new Course("الگوریتم مقدماتی", 3, 403);
+        CourseRepository.getRepository().create(alg1);
+
+        Course alg2 = new Course("الگوریتم پیشرفته", 3, 404);
+        alg2.addCondtion(new PishniaziCondition("پیش نیازی الگوریتم مقدماتی", alg1));
+        CourseRepository.getRepository().create(alg2);
+
+        // create course offers
+        CourseOffer dmOffer = new CourseOffer("Class 401", "09:00AM", new SemesterIdentifier(1395, 2), dm);
+        CourseOffer dsOffer = new CourseOffer("Class 403", "10:30AM", new SemesterIdentifier(1395, 2), ds);
+        CourseOffer alg1Offer = new CourseOffer("Class 410", "14:00PM", new SemesterIdentifier(1395, 2), alg1);
+        CourseOffer alg2Offer = new CourseOffer("Class 402", "16:00PM", new SemesterIdentifier(1395, 2), alg2);
+
+        CourseOfferRepository.getRepository().create(dmOffer);
+        CourseOfferRepository.getRepository().create(dsOffer);
+        CourseOfferRepository.getRepository().create(alg1Offer);
+        CourseOfferRepository.getRepository().create(alg2Offer);
+    }
+
     public static void NtekhabVahedScenario() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter student id:");
@@ -203,8 +285,11 @@ public class App {
             for (AttendedCourse attendedCourse : student.getAttendedCourses(NtekhabVahed.getCurrentSemester()))
                 System.out.println(attendedCourse.getCourseName() + " (" + attendedCourse.getCourseUniqueId() + ")");
 
-            System.out.println("Enter id: ");
+            System.out.println("Enter id [add 10000 for getting as minor]: ");
             int targetId = scan.nextInt();
+            boolean minor = (targetId >= 10000);
+            if (minor)
+                targetId -= 10000;
 
             if (targetId <= 0)
                 break;
@@ -216,7 +301,15 @@ public class App {
                     break;
                 }
 
-            if (NtekhabVahed.getInstance().getCourseOffer(student, target))
+            boolean result = false;
+            if (!minor)
+                result = NtekhabVahed.getInstance().getCourseOffer(student, target);
+            else {
+                result = NtekhabVahed.getInstance().getCourseOfferAsMinor(student, target);
+                System.out.println("=== MINOR ===");
+            }
+
+            if (result)
                 System.out.println("Successful");
             else
                 System.out.println("You cannot attend this course.");
@@ -234,6 +327,8 @@ public class App {
 
         for (CourseOffer courseOffer : courseOffers) {
             if (NtekhabVahed.getInstance().getCourseOffer(student, courseOffer))
+                System.out.println(courseOffer.getCourse().getName() + " successful");
+            else if (NtekhabVahed.getInstance().getCourseOfferAsMinor(student, courseOffer))
                 System.out.println(courseOffer.getCourse().getName() + " successful");
             else
                 System.out.println(courseOffer.getCourse().getName() + " unsuccessful");
@@ -254,7 +349,10 @@ public class App {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nEnter student id:");
 
-        String sid = scan.nextLine();
+//        String sid = scan.nextLine();
+        String sid = "810192489";  // #TODO remove this
+
+        NtekhabVahedAuto(sid); // #TODO remove this
 
         Student student = StudentRepository.getRepository().readByStudentNumber(sid);
 
@@ -265,9 +363,11 @@ public class App {
         System.out.println("App started");
 
         createChart();
+        createMinorChart();
         initializeNtekhabVahed();
+        initializeNtekhabVahedMinor();
 
-        NtekhabVahedScenario();
+//        NtekhabVahedScenario();
         FaraghatAzTahsilScenario();
 
         System.out.println("Press \"ENTER\" to continue...");

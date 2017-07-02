@@ -135,4 +135,12 @@ public class SemesterStatus {
 
         this.attendedCourses.add(attended);
     }
+
+    public boolean findLicense(License license) {
+        for(License l: licenses) {
+            if (l.equals(license))
+                return true;
+        }
+        return false;
+    }
 }

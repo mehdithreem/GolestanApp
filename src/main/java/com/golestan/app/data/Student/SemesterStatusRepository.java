@@ -33,4 +33,15 @@ class SemesterStatusRepository {
         tx.commit();
         session.close();
     }
+
+    public void createLicense(SemesterStatus semesterStatus, License license) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        licenseRepository.create(license);
+        session.update(semesterStatus);
+
+        tx.commit();
+        session.close();
+    }
 }

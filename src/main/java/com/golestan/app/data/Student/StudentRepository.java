@@ -1,6 +1,7 @@
 package com.golestan.app.data.Student;
 
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
+import com.golestan.app.domain.Student.License;
 import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.domain.Student.Student;
 import com.golestan.app.util.HibernateUtil;
@@ -69,5 +70,9 @@ public class StudentRepository {
 
     public void updateAttendedCourses(SemesterStatus semesterStatus) {
         this.semesterStatusRepository.updateAttendedCourses(semesterStatus);
+    }
+
+    public void createLicense(SemesterStatus semesterStatus, License license) {
+        this.semesterStatusRepository.createLicense(semesterStatus, license);
     }
 }

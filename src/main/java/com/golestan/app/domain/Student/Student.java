@@ -4,6 +4,7 @@ import com.golestan.app.data.Student.StudentRepository;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.EducationalMajor.EducationalMajor;
+import com.golestan.app.domain.MinorConditions.MinorConditions;
 import com.golestan.app.domain.Person.Character;
 import com.golestan.app.domain.Person.Individual;
 import com.golestan.app.domain.SemesterIdentifier;
@@ -27,6 +28,9 @@ public class Student extends Character {
 
     @ManyToOne( fetch = FetchType.EAGER )
     private EducationalMajor educationalMajor;
+
+    @ManyToOne( fetch = FetchType.EAGER )
+    private EducationalMajor educationalMinor;
 
     @ElementCollection
     private Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap;
@@ -84,6 +88,12 @@ public class Student extends Character {
         StudentRepository.getRepository().updateAttendedCourses(semesterStatus);
     }
 
+    public void createLicense(License license, SemesterIdentifier semesterIdentifier) {
+        SemesterStatus semesterStatus = (this.getSemesterIdentifierCourseGetterMap()).get(semesterIdentifier);
+        semesterStatus.addLicense(license);
+        StudentRepository.getRepository().createLicense(semesterStatus, license);
+    }
+
     public List<AttendedCourse> getAttendedCourses(){
         List<AttendedCourse> res =  new ArrayList<AttendedCourse>();
         for (SemesterIdentifier semester : semesterIdentifierCourseGetterMap.keySet()){
@@ -96,4 +106,19 @@ public class Student extends Character {
         return semesterIdentifierCourseGetterMap.get(semesterIdentifier).getAttendedCourses();
     }
 
+    public EducationalMajor getEducationalMinor() {
+        return educationalMinor;
+    }
+
+    public void setEducationalMinor(EducationalMajor educationalMinor) {
+        this.educationalMinor = educationalMinor;
+    }
+
+    public boolean addMinor(EducationalMajor educationalMinor) {
+        if (MinorConditions.getInstance().isMojaz(this)) {
+            setEducationalMinor(educationalMinor);
+            return true;
+        }
+        return false;
+    }
 }

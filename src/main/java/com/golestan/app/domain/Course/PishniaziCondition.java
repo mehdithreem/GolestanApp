@@ -1,10 +1,12 @@
 package com.golestan.app.domain.Course;
 
+import com.golestan.app.application.NtekhabVahed;
 import com.golestan.app.domain.AttendedCourse.AttendedCourse;
 import com.golestan.app.domain.Condition;
 import com.golestan.app.domain.CourseOffer.CourseOffer;
 import com.golestan.app.domain.Semester;
 import com.golestan.app.domain.SemesterIdentifier;
+import com.golestan.app.domain.Student.License;
 import com.golestan.app.domain.Student.SemesterStatus;
 import com.golestan.app.domain.Student.Student;
 
@@ -40,6 +42,14 @@ public class PishniaziCondition extends Condition {
                     return true;
             }
         }
+
+        for(License license : student.getSemesterIdentifierCourseGetterMap().get(NtekhabVahed.getCurrentSemester()).getLicenses()) {
+            if (license.getTitle().equals("Minor Get") && license.getCourseUniqueId().equals(courseOffer.getCourse().getCourseUniqueId())) {
+                System.out.print("Minor Get pishniaz license used");
+                return true;
+            }
+        }
+
         System.out.println("Pishniazi " + this.pishniaz.getName() + " failed");
         return false;
     }
