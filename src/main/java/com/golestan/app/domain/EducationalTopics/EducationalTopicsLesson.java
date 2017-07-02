@@ -79,7 +79,30 @@ public class EducationalTopicsLesson extends Tatbighable {
                 tatbighed = true;
                 tatbighCount = courseUnit;
                 attendedCourses.remove(attendedCourse);
+
+                System.out.println("\t\t"
+                        + attendedCourse.getCourseName()
+                        + " (" + attendedCourse.getCourseUniqueId() + ") tatbighed with " +
+                        this.name + " (" + this.courseUniqueId + ")");
+
                 break;
+            }
+        }
+
+        if (tatbighed == true) {
+            for(AttendedCourse attendedCourse: attendedCourses) {
+                if (attendedCourse.getManualTatbighUniqueId().equals(courseUniqueId)) {
+                    tatbighed = true;
+                    tatbighCount = courseUnit;
+                    attendedCourses.remove(attendedCourse);
+
+                    System.out.println("\t\t"
+                            + attendedCourse.getCourseName()
+                            + " (" + attendedCourse.getCourseUniqueId() + ") MANUALLY tatbighed with " +
+                            this.name + " (" + this.courseUniqueId + ")");
+
+                    break;
+                }
             }
         }
 

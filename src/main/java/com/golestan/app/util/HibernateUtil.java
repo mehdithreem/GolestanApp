@@ -83,7 +83,6 @@ public class HibernateUtil {
                         .addAnnotatedClass(Professor.class)
                     .addPackage("com.golestan.app.domain.Student")
                         .addAnnotatedClass(SemesterStatus.class)
-                        .addAnnotatedClass(GraduatedMatchForm.class)
                         .addAnnotatedClass(GuestStudent.class)
                         .addAnnotatedClass(License.class)
                         .addAnnotatedClass(Student.class)

@@ -29,6 +29,10 @@ public class AttendedCourseFromThisUni extends AttendedCourse {
         return courseOffer.getCourse().getCourseUniqueId();
     }
 
+    public String getCourseName() {
+        return courseOffer.getCourse().getName();
+    }
+
     public CourseOffer getCourseOffer() {
         return courseOffer;
     }

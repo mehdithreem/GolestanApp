@@ -31,15 +31,23 @@ abstract public class AttendedCourse {
     @Column( name = "STUDENT_NUMBER")
     private String studentNumber;
 
+    @Column( name = "MANUAL_TATBIGH_UNIQUE_ID")
+    private Integer manualTatbighUniqueId;
+
     protected AttendedCourse(String studentFullName, String studentNumber) {
         this.status = "اخذ شده";
         this.mark = 0;
         this.studentFullName = studentFullName;
         this.studentNumber = studentNumber;
+        this.manualTatbighUniqueId = 0;
     }
 
     protected AttendedCourse() {
     }
+
+    public abstract Integer getCourseUniqueId();
+
+    public abstract String getCourseName();
 
     public Integer getId() {
         return id;
@@ -81,5 +89,11 @@ abstract public class AttendedCourse {
         this.mark = mark;
     }
 
-    public abstract Integer getCourseUniqueId();
+    public Integer getManualTatbighUniqueId() {
+        return manualTatbighUniqueId;
+    }
+
+    public void setManualTatbighUniqueId(Integer manualTatbighUniqueId) {
+        this.manualTatbighUniqueId = manualTatbighUniqueId;
+    }
 }

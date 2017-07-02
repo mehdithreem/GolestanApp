@@ -28,9 +28,6 @@ public class Student extends Character {
     @ManyToOne( fetch = FetchType.EAGER )
     private EducationalMajor educationalMajor;
 
-    @Embedded
-    private GraduatedMatchForm graduatedMatchingForm;
-
     @ElementCollection
     private Map<SemesterIdentifier, SemesterStatus> semesterIdentifierCourseGetterMap;
 
@@ -39,7 +36,6 @@ public class Student extends Character {
 
     public Student(Individual ind, String studentNumber, EducationalMajor educationalMajor) {
         this.educationalMajor = educationalMajor;
-        this.graduatedMatchingForm = null;
         this.studentNumber = studentNumber;
         this.semesterIdentifierCourseGetterMap = new HashMap<SemesterIdentifier, SemesterStatus>();
         this.setIndividual(ind);
@@ -58,14 +54,6 @@ public class Student extends Character {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
-    }
-
-    public GraduatedMatchForm getGraduatedMatchingForm() {
-        return graduatedMatchingForm;
-    }
-
-    public void setGraduatedMatchingForm(GraduatedMatchForm graduatedMatchingForm) {
-        this.graduatedMatchingForm = graduatedMatchingForm;
     }
 
     public EducationalMajor getEducationalMajor() {
