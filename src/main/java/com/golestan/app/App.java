@@ -349,10 +349,10 @@ public class App {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nEnter student id:");
 
-//        String sid = scan.nextLine();
-        String sid = "810192489";  // #TODO remove this
+        String sid = scan.nextLine();
+//        String sid = "810192489";
 
-        NtekhabVahedAuto(sid); // #TODO remove this
+//        NtekhabVahedAuto(sid);
 
         Student student = StudentRepository.getRepository().readByStudentNumber(sid);
 
@@ -367,7 +367,7 @@ public class App {
         initializeNtekhabVahed();
         initializeNtekhabVahedMinor();
 
-//        NtekhabVahedScenario();
+        NtekhabVahedScenario();
         FaraghatAzTahsilScenario();
 
         System.out.println("Press \"ENTER\" to continue...");

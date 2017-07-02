@@ -18,16 +18,31 @@ public class FaraghatAzTahsil {
     }
 
     public void FareghKon(Student student){
-        EducationalMajor educationalMajor = student.getEducationalMajor();
-        EducationalTopics educationalTopics = EducationalTopicsRepository
-                                                .getRepository()
-                                                .readByEducationalMajorWithBlocks(educationalMajor);
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
+        EducationalMajor educationalMinor = student.getEducationalMinor();
+        boolean tatbighedMinor = true;
 
-        boolean tatbighed = educationalTopics.isTatbighed(attendedCourses);
-        FareghKonMajor(student, attendedCourses);
+        if (educationalMinor != null) {
+            EducationalTopics educationalTopics = EducationalTopicsRepository
+                    .getRepository()
+                    .readByEducationalMajorWithBlocks(educationalMinor);
+
+            tatbighedMinor = educationalTopics.isTatbighed(attendedCourses);
+
+            if (tatbighedMinor)
+                System.out.println("- Minor Tatbighed.");
+            else
+                System.out.println("- Minor Not Tatbighed");
+        }
+
+        boolean tatbighed = FareghKonMajor(student, attendedCourses);
 
         if (tatbighed)
+            System.out.println("- Major Tatbighed.");
+        else
+            System.out.println("- Major Not Tatbighed");
+
+        if (tatbighed && tatbighedMinor)
             System.out.println("Tatbighed.");
         else
             System.out.println("Not Tatbighed");
@@ -38,8 +53,6 @@ public class FaraghatAzTahsil {
         EducationalTopics educationalTopics = EducationalTopicsRepository
                 .getRepository()
                 .readByEducationalMajorWithBlocks(educationalMajor);
-
-        System.out.println("count" + String.valueOf(attendedCourses.size()));
 
         return educationalTopics.isTatbighed(attendedCourses);
     }
