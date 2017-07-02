@@ -89,7 +89,7 @@ public class EducationalTopicsLesson extends Tatbighable {
             }
         }
 
-        if (tatbighed == true) {
+        if (!tatbighed) {
             for(AttendedCourse attendedCourse: attendedCourses) {
                 if (attendedCourse.getManualTatbighUniqueId().equals(courseUniqueId)) {
                     tatbighed = true;

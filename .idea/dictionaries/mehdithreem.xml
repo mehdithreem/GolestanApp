@@ -2,15 +2,20 @@
   <dictionary name="mehdithreem">
     <words>
       <w>acourse</w>
+      <w>andishe</w>
       <w>coff</w>
+      <w>faraghat</w>
+      <w>faregh</w>
       <w>feraghat</w>
       <w>golestan</w>
+      <w>golestanapp</w>
       <w>golestandb</w>
       <w>pishniazi</w>
       <w>postgre</w>
       <w>postgresql</w>
       <w>riazi</w>
       <w>tahsil</w>
+      <w>takhasosi</w>
     </words>
   </dictionary>
 </component>

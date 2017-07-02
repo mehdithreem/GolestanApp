@@ -92,6 +92,11 @@ public class Block extends Tatbighable {
             total = total + tatbighed.tatbighedCount();
         }
 
+        if (result)
+            System.out.println("\t" + this.name + " is tatbighed all.");
+        else
+            System.out.println("\t" + this.name + " not tatbighed all.");
+
         return new MyTatbighed(result, total);
     }
 
@@ -102,7 +107,13 @@ public class Block extends Tatbighable {
             total = total + tatbighed.tatbighedCount();
         }
 
-        return new MyTatbighed(total >= unitPerBlock , total);
+        Boolean result = total >= unitPerBlock;
+        if (result)
+            System.out.println("\t" + this.name + " is tatbighed some.");
+        else
+            System.out.println("\t" + this.name + " not tatbighed some (tatbigh count: " + total.toString() + ", should be " + unitPerBlock + ").");
+
+        return new MyTatbighed(result , total);
     }
 
     private ITatbighed tatbighOne(List<AttendedCourse> attendedCourses) {
@@ -113,6 +124,11 @@ public class Block extends Tatbighable {
             result = result || tatbighed.isTatbighed();
             total = total + tatbighed.tatbighedCount();
         }
+
+        if (result)
+            System.out.println("\t" + this.name + " is tatbighed one.");
+        else
+            System.out.println("\t" + this.name + " not tatbighed one.");
 
         return new MyTatbighed(result, total);
     }

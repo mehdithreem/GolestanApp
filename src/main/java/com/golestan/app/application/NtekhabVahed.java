@@ -32,4 +32,8 @@ public class NtekhabVahed {
 
         return result;
     }
+
+    public static SemesterIdentifier getCurrentSemester() {
+        return currentSemester;
+    }
 }

@@ -59,6 +59,7 @@ public class EducationalTopicsRepository {
         EducationalTopics educationalTopics = query.getSingleResult();
 
         Tatbighable root = educationalTopics.getRoot();
+        root.getRootId();
 
         session.close();
         return educationalTopics;

@@ -21,6 +21,7 @@ public class MinimumRequiredCourseUnitCondition extends Condition{
     }
 
     public boolean is_justify(Student student, CourseOffer courseOffer) {
+        // #TODO implement
         return false;
     }
 }

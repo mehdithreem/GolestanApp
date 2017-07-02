@@ -86,10 +86,14 @@ public class Student extends Character {
 
     public List<AttendedCourse> getAttendedCourses(){
         List<AttendedCourse> res =  new ArrayList<AttendedCourse>();
-        for (Map.Entry<SemesterIdentifier, SemesterStatus> semester : semesterIdentifierCourseGetterMap.entrySet() ){
-            res.addAll(semester.getValue().getAttendedCourses());
+        for (SemesterIdentifier semester : semesterIdentifierCourseGetterMap.keySet()){
+            res.addAll(semesterIdentifierCourseGetterMap.get(semester).getAttendedCourses());
         }
         return res;
+    }
+
+    public List<AttendedCourse> getAttendedCourses(SemesterIdentifier semesterIdentifier) {
+        return semesterIdentifierCourseGetterMap.get(semesterIdentifier).getAttendedCourses();
     }
 
 }

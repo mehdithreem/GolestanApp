@@ -13,10 +13,10 @@ public class MyTatbighed implements ITatbighed {
     }
 
     public boolean isTatbighed() {
-        return false;
+        return isTatbighed;
     }
 
     public Integer tatbighedCount() {
-        return null;
+        return tatbighed;
     }
 }

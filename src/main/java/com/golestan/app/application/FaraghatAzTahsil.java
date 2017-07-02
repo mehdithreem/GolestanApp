@@ -23,6 +23,7 @@ public class FaraghatAzTahsil {
                                                 .getRepository()
                                                 .readByEducationalMajorWithBlocks(educationalMajor);
         List<AttendedCourse> attendedCourses = student.getAttendedCourses();
+
         boolean tatbighed = educationalTopics.isTatbighed(attendedCourses);
 
         if (tatbighed)
